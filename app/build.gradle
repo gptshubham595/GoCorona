@@ -67,5 +67,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:19.0.0'
 
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+// Dependency for Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
 
 }

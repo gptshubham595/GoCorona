@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GoCorona</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA90qVjj8tMwwM0T-FU1ygmgll5rUn2ip8</string>
+    <string name="sign_up_with_email">Sign Up with Email</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="sign_out">Sign out</string>
 </resources>
