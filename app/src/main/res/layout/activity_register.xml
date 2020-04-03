@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context=".RegisterDetails">
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_alignParentTop="true"
+        android:max="100"
+        android:progress="45"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:layout_height="match_parent">
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/name"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Age"
+        android:id="@+id/age"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/name"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/location"
+        android:hint="Location"
+        android:inputType="textPostalAddress"
+        android:gravity="center"
+        android:enabled="false"
+        android:layout_below="@id/age"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@id/location"
+        android:layout_centerHorizontal="true"
+        android:text="GO"
+        android:id="@+id/go"
+        android:textSize="18sp"
+        android:background="@android:color/holo_green_dark"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+</RelativeLayout>
