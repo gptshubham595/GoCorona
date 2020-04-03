@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -52,6 +53,7 @@ public class LoginScreen extends AppCompatActivity implements
     String addressresult;
     String latitude;
     String cityName;
+    TextView already;
     private static final String TAG = "SignInActivity";
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 101;
 
@@ -67,6 +69,14 @@ public class LoginScreen extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
         email=findViewById(R.id.email);
+        already = findViewById(R.id.already);
+        already.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent I = new Intent(LoginScreen.this, LoginAlready.class);
+                startActivity(I);
+            }
+        });
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +191,7 @@ public class LoginScreen extends AppCompatActivity implements
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("name", name);
                     userMap.put("email", email);
+                    userMap.put("age", "18");
                     userMap.put("status", "safe.");
                     userMap.put("city", cityName);
                     userMap.put("latitude", latitude);
@@ -309,7 +320,7 @@ public class LoginScreen extends AppCompatActivity implements
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.

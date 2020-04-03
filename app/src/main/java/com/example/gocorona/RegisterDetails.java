@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +41,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class RegisterDetails extends AppCompatActivity {
-    EditText name, age, locbox;
+    EditText name, age, locbox, email, password;
     Button go;
     String longitude;
     String latitude;
@@ -74,6 +75,9 @@ public class RegisterDetails extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         name = findViewById(R.id.name);
         age = findViewById(R.id.age);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+
         locbox = findViewById(R.id.location);
         go = findViewById(R.id.go);
         locbox.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +115,7 @@ public class RegisterDetails extends AppCompatActivity {
 
                 }
                 if (!TextUtils.isEmpty(locbox.getText().toString()) && !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
-                    RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), locbox.getText().toString().trim());
-
+                    RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim());
 
                 }
             }
@@ -120,41 +123,56 @@ public class RegisterDetails extends AppCompatActivity {
 
     }
 
-    private void RegisterAccount(String name, String age, String loc) {
+    private void RegisterAccount(final String name, final String age, final String email, String pass) {
         progressBar.setVisibility(View.VISIBLE);
-
-        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = current_user.getUid();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-
-        String device_token = FirebaseInstanceId.getInstance().getToken();
-
-        HashMap<String, String> userMap = new HashMap<>();
-        userMap.put("name", name);
-        userMap.put("age", age);
-        userMap.put("status", "safe");
-        userMap.put("city", cityName);
-        userMap.put("latitude", latitude);
-        userMap.put("longitude", longitude);
-        userMap.put("thumb_image", "default");
-        userMap.put("device_token", device_token);
-        mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getApplicationContext(), "Registered!! Please verify Email Confirmation and Login", Toast.LENGTH_LONG).show();
 
-                    Intent mainIntent = new Intent(RegisterDetails.this, MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(mainIntent);
-                    finish();
 
+                    FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = current_user.getUid();
+
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
+                    String device_token = FirebaseInstanceId.getInstance().getToken();
+
+                    HashMap<String, String> userMap = new HashMap<>();
+                    userMap.put("name", name);
+                    userMap.put("age", age);
+                    userMap.put("email", email);
+                    userMap.put("status", "safe");
+                    userMap.put("city", cityName);
+                    userMap.put("latitude", latitude);
+                    userMap.put("longitude", longitude);
+                    userMap.put("image", "default");
+                    userMap.put("device_token", device_token);
+
+                    mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Intent mainIntent = new Intent(RegisterDetails.this, MainActivity.class);
+                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(mainIntent);
+                                finish();
+
+                            } else {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(RegisterDetails.this, "Cannot Register. Please check the Internet and try again.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 } else {
+
                     progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(RegisterDetails.this, "Cannot Register. Please check the Internet and try again.", Toast.LENGTH_LONG).show();
+
                 }
+
             }
         });
     }
@@ -201,7 +219,7 @@ public class RegisterDetails extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
