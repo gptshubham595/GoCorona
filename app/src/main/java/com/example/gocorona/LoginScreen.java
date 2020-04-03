@@ -194,7 +194,7 @@ public class LoginScreen extends AppCompatActivity implements
 
                             if (task.isSuccessful()) {
 
-                                Intent mainIntent = new Intent(LoginScreen.this, RegisterDetails.class);
+                                Intent mainIntent = new Intent(LoginScreen.this, MainActivity.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainIntent);
                                 finish();
