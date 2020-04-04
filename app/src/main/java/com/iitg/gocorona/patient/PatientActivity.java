@@ -114,7 +114,7 @@ public class PatientActivity extends AppCompatActivity {
         String device_token = FirebaseInstanceId.getInstance().getToken();
         allpatientdatabaseReference = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token);
         allpatientdatabaseReference.keepSynced(true);
-
+        swipe=findViewById(R.id.swipe);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
