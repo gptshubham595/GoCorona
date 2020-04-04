@@ -96,7 +96,7 @@ public class PatientActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        showDialog(getApplicationContext(), String.valueOf(i));
+                        showDialog(PatientActivity.this, String.valueOf(i));
                     }
                 }, 100);
             }
@@ -183,7 +183,7 @@ public class PatientActivity extends AppCompatActivity {
                     viewHolder.mview.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showDialog2(getApplicationContext(), posid);
+                            showDialog2(PatientActivity.this, posid);
                         }
                     });
                 }
@@ -197,8 +197,8 @@ public class PatientActivity extends AppCompatActivity {
         }
     }
 
-    private void showDialog2(Context context, final String pos) {
-        final Dialog dialog = new Dialog(getActivity());
+    private void showDialog2(PatientActivity patientActivity, final String pos) {
+        final Dialog dialog = new Dialog(patientActivity);
         dialog.setTitle("Edit");
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_option_patient_choice);
