@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="com.example.gocorona.permission.MAP_RECEIVE" />
+    <uses-permission android:name="com.iitg.gocorona.permission.MAP_RECEIVE" />
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"

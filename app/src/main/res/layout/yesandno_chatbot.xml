@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,6 +84,6 @@
             app:layout_constraintEnd_toEndOf="@id/buttons_layout"
             app:layout_constraintStart_toEndOf="@id/cardbtn2"
             app:layout_constraintTop_toTopOf="@id/buttons_layout" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

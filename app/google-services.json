@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:563221586738:android:aa22e7afd02aecd0a06d2b",
+        "mobilesdk_app_id": "1:563221586738:android:81b1cee3e4b86b8da06d2b",
         "android_client_info": {
-          "package_name": "com.example.gocorona"
+          "package_name": "com.iitg.gocorona"
         }
       },
       "oauth_client": [
         {
-          "client_id": "563221586738-tabgqvvslfqhp7eh4a7821kv9a99khsg.apps.googleusercontent.com",
+          "client_id": "563221586738-4t3miuonuahf4k33snjn085gk6ipgmrm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.gocorona",
+            "package_name": "com.iitg.gocorona",
             "certificate_hash": "45b3a2b89b7b74987888476ceb6ea575120d122e"
           }
         },
@@ -36,7 +36,44 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "563221586738-4qiut9bts7d6jfnkko37tat906dnhcmq.apps.googleusercontent.com",
+              "client_id": "563221586738-45raemu6i31j4q6hq8i2nno55030m6co.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563221586738:android:69c075a6ca99076da06d2b",
+        "android_client_info": {
+          "package_name": "com.mohan.covid19admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563221586738-p1c00ssahtgjncpfov7aja18csfav076.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mohan.covid19admin",
+            "certificate_hash": "3838d55a8ed9aa89f8a51a997a8450a91964a716"
+          }
+        },
+        {
+          "client_id": "563221586738-4qiut9bts7d6jfnkko37tat906dnhcmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUpR0sv8G7qv4FfveB-U08kQqnRuWMuSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563221586738-45raemu6i31j4q6hq8i2nno55030m6co.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -73,7 +110,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "563221586738-4qiut9bts7d6jfnkko37tat906dnhcmq.apps.googleusercontent.com",
+              "client_id": "563221586738-45raemu6i31j4q6hq8i2nno55030m6co.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

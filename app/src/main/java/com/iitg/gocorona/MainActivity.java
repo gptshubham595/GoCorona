@@ -1,7 +1,6 @@
 package com.iitg.gocorona;
 
 import android.Manifest;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.location.Location;
@@ -17,10 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-
-import com.iitg.gocorona.food.FoodActivity;
-import com.iitg.gocorona.medicalchatbot.Welcome;
-import com.iitg.gocorona.patient.PatientActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -40,17 +35,20 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.iitg.gocorona.food.FoodActivity;
+import com.iitg.gocorona.patient.PatientActivity;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot;
+    Button food, patient, symptoms, medicalChatbot;c
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
 
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         food = findViewById(R.id.food);
         symptoms = findViewById(R.id.symptom);
         patient = findViewById(R.id.patient);
-        medicalChatbot=findViewById(R.id.medicalChatbot);
+        medicalChatbot = findViewById(R.id.medicalChatbot);
 
         food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,10 +220,14 @@ public class MainActivity extends AppCompatActivity {
         // Display the connection status
 
         if (mCurrentLocation != null) {
-            Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
-            LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
-            map.animateCamera(cameraUpdate);
+            try {
+                Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
+                LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+                map.animateCamera(cameraUpdate);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
         }
