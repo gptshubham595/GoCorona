@@ -1,11 +1,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="60dp"
+    android:layout_marginLeft="10dp"
     android:layout_gravity="center"
-    android:layout_marginRight="60dp"
-    android:layout_marginBottom="60dp"
-    android:layout_marginTop="20dp">
+    android:layout_marginRight="10dp">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,12 +11,16 @@
         android:layout_width="match_parent"
         android:id="@+id/foodqueryDIALOG"
         android:layout_marginTop="5dp"
+        android:inputType="textMultiLine"
         android:hint="Need help! \n Only 5 kg of Rice is left and that will end upto 2 moore days. We don't have access to buy food as no shops are open.\n Please help us "
         android:layout_height="wrap_content"/>
     <EditText
         android:layout_width="match_parent"
         android:id="@+id/contactnumberDIALOG"
         android:layout_marginTop="5dp"
+        android:inputType="number"
+        android:maxEms="10"
+        android:minEms="10"
         android:layout_below="@id/foodqueryDIALOG"
         android:hint="Contact Number .."
         android:layout_height="wrap_content"/>
@@ -26,6 +28,7 @@
         android:layout_width="match_parent"
         android:hint="Location"
         android:layout_marginTop="5dp"
+        android:inputType="textPostalAddress"
         android:layout_below="@id/contactnumberDIALOG"
         android:id="@+id/locationqueryDIALOG"
         android:layout_height="wrap_content"/>
