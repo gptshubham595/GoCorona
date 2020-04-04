@@ -51,7 +51,7 @@ public class FoodNearby extends Fragment {
                     FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
                                 viewHolder.setFoodQuery(model.getFoodQuery());
                                 viewHolder.setContact(model.getContact());
                                 viewHolder.setLocation(model.getLocation());
@@ -64,7 +64,7 @@ public class FoodNearby extends Fragment {
                                     }
                                 });
 
-                            }
+
                         }
 
                         @Override

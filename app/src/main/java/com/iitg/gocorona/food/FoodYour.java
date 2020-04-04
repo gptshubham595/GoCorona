@@ -268,8 +268,7 @@ public class FoodYour extends Fragment {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-        i=geti();
-        i++;
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

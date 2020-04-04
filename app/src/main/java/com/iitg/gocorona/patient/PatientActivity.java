@@ -55,19 +55,6 @@ public class PatientActivity extends AppCompatActivity {
             }
         }, 500);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                i = geti();
-            }
-        }, 1500);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                i = geti();
-            }
-        }, 2500);
 
         mToolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
@@ -262,9 +249,7 @@ public class PatientActivity extends AppCompatActivity {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-        i = geti();
 
-        i++;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
