@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_covid);
 
-        getSupportActionBar().setTitle("Symptom checker");
+//        getSupportActionBar().setTitle("Symptom checker");
 
         scroll=findViewById(R.id.scroll);
 

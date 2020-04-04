@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot;c
+    Button food, patient, symptoms, medicalChatbot;
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
 
