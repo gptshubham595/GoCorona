@@ -223,6 +223,7 @@ public class FoodYour extends Fragment {
     }
 
     private void showDialog(Context context) {
+        Toast.makeText(context, "Shohwing", Toast.LENGTH_SHORT).show();
         final Dialog dialog = new Dialog(context);
         dialog.setTitle("ADD YOUR FOOD CRISIS");
         dialog.setCancelable(false);
