@@ -1,4 +1,4 @@
-package com.example.gocorona;
+package com.example.gocorona.auth;
 
 import android.Manifest;
 import android.content.Context;
@@ -10,28 +10,24 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
+import com.example.gocorona.MainActivity;
+import com.example.gocorona.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,150 +42,96 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class LoginScreen extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 9001;
+public class RegisterDetails extends AppCompatActivity {
+    EditText name, age, locbox, email, password;
+    Button go;
     String longitude;
-    String addressresult;
     String latitude;
     String cityName;
-    TextView already;
-    private static final String TAG = "SignInActivity";
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 101;
-
+    private FirebaseAuth mAuth;
+    String addressresult;
     private DatabaseReference mDatabase;
 
-    //Firebase Auth
-    private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
-    Button email;
+    ProgressBar progressBar;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
+
         mAuth = FirebaseAuth.getInstance();
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    checkLocationPermission();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 50);
+
+        progressBar = findViewById(R.id.progress);
+        name = findViewById(R.id.name);
+        age = findViewById(R.id.age);
         email = findViewById(R.id.email);
-        already = findViewById(R.id.already);
-        already.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent I = new Intent(LoginScreen.this, LoginAlready.class);
-                startActivity(I);
-            }
-        });
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent I = new Intent(LoginScreen.this, RegisterDetails.class);
-                startActivity(I);
+        password = findViewById(R.id.password);
 
-            }
-        });
-        new Handler().postDelayed(new Runnable() {
+        locbox = findViewById(R.id.location);
+        go = findViewById(R.id.go);
+        locbox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
                 try {
                     checkLocationPermission();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        }, 50);
+        });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
-        signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
-
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                if (TextUtils.isEmpty(name.getText().toString())) {
+                    name.setError("Name!");
+                }
+                if (TextUtils.isEmpty(age.getText().toString())) {
+                    age.setError("Age!");
+                }
+//                if (TextUtils.isEmpty(locbox.getText().toString())) {
+//                    locbox.setError("Location!");
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                checkLocationPermission();
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }, 50);
+//
+//                }
+//                if (!TextUtils.isEmpty(locbox.getText().toString()) && !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
+//                    RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim());
+
+
+                    if ( !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
+                    RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim());
+
+                }
             }
         });
+
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-// Check for existing Google Sign In account, if the user is already signed in
-// the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
-        if(account!=null){
-            Intent mainIntent = new Intent(LoginScreen.this, MainActivity.class);
-            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(mainIntent);
-            finish();}
-        updateUI(account);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
-    // [END onActivityResult]
-
-    // [START handleSignInResult]
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
-
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        checkLocationPermission();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, 50);
-
-
-            if (account != null)
-                RegisterwithGmail(account.getDisplayName(), account.getEmail(), account.getId(), account.getPhotoUrl());
-
-
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
-        }
-    }
-
-    private void RegisterwithGmail(final String name, final String email, String id, final Uri photoUrl) {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    checkLocationPermission();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 50);
-
-
-        mAuth.createUserWithEmailAndPassword(email, id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void RegisterAccount(final String name, final String age, final String email, String pass) {
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -205,81 +147,41 @@ public class LoginScreen extends AppCompatActivity {
 
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("name", name);
+                    userMap.put("age", age);
                     userMap.put("email", email);
-                    userMap.put("age", "18");
-                    userMap.put("status", "safe.");
+                    userMap.put("status", "safe");
 //                    userMap.put("city", cityName);
 //                    userMap.put("latitude", latitude);
 //                    userMap.put("longitude", longitude);
-                    userMap.put("image", String.valueOf(photoUrl));
+                    userMap.put("image", "default");
                     userMap.put("device_token", device_token);
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-
                             if (task.isSuccessful()) {
-
-                                Intent mainIntent = new Intent(LoginScreen.this, MainActivity.class);
-                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Intent mainIntent = new Intent(RegisterDetails.this, MainActivity.class);
+                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(mainIntent);
                                 finish();
 
+                            } else {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(RegisterDetails.this, "Cannot Register. Please check the Internet and try again.", Toast.LENGTH_LONG).show();
                             }
-
                         }
                     });
-
-
                 } else {
 
-
-                    Toast.makeText(LoginScreen.this, "Cannot Sign in. Please check the form and try again.", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(RegisterDetails.this, "Cannot Register. Please check the Internet and try again.", Toast.LENGTH_LONG).show();
 
                 }
 
             }
         });
-
     }
-    // [END handleSignInResult]
-
-    // [START signIn]
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    // [END signIn]
-
-    // [START signOut]
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        updateUI(null);
-                        // [END_EXCLUDE]
-                    }
-                });
-    }
-    // [END signOut]
-
-
-    private void updateUI(@Nullable GoogleSignInAccount account) {
-        if (account != null) {
-//            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
-
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-        } else {
-//            mStatusTextView.setText(R.string.signed_out);
-
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-        }
-    }
-
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
@@ -300,7 +202,7 @@ public class LoginScreen extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(LoginScreen.this,
+                                ActivityCompat.requestPermissions(RegisterDetails.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }
@@ -390,7 +292,7 @@ public class LoginScreen extends AppCompatActivity {
                 sb.append(address.getCountryName());
                 addressresult = sb.toString();
                 String s = longitude + " " + latitude + " " + cityName;
-//                locbox.setText(addressresult);
+                locbox.setText(addressresult);
 
             } catch (IOException e) {
                 e.printStackTrace();

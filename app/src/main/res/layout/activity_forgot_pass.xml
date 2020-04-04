@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".ForgotPass">
+    tools:context=".auth.ForgotPass">
 
     <TextView
         android:id="@+id/typeemail"

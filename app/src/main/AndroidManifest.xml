@@ -26,15 +26,15 @@
 
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
-        <activity android:name=".FoodYour" />
-        <activity android:name=".FoodNearby" />
-        <activity android:name=".ForgotPass" />
-        <activity android:name=".LoginAlready" />
-        <activity android:name=".FoodActivity" />
+        <activity android:name=".food.FoodYour" />
+        <activity android:name=".food.FoodNearby" />
+        <activity android:name=".auth.ForgotPass" />
+        <activity android:name=".auth.LoginAlready" />
+        <activity android:name=".food.FoodActivity" />
         <activity android:name=".Patient" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".RegisterDetails" />
-        <activity android:name=".LoginScreen">
+        <activity android:name=".auth.RegisterDetails" />
+        <activity android:name=".auth.LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

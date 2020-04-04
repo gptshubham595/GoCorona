@@ -1,4 +1,4 @@
-package com.example.gocorona;
+package com.example.gocorona.food;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.gocorona.R;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
 
 public class FoodNearby extends Fragment {
