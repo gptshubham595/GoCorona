@@ -2,6 +2,8 @@ package com.iitg.gocorona.medicalchatbot;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -53,6 +55,7 @@ public class Chat extends AsyncTask<String, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject result) {
+        Log.d("nfnRESULT",result+"");
         // result holds what you return from doInBackground;
         com.iitg.gocorona.medicalchatbot.MainActivity cont = (com.iitg.gocorona.medicalchatbot.MainActivity) mContext;
         cont.ServerChat(result);

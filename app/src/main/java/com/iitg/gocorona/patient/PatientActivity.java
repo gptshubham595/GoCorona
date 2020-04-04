@@ -116,7 +116,7 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
 
-        patientreports.setClickable(true);
+
         patientreports.setHasFixedSize(true);
         patientreports.setLayoutManager(new LinearLayoutManager(this));
 

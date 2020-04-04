@@ -173,7 +173,7 @@ public class FoodNearby extends Fragment {
         });
         foodreports = view.findViewById(R.id.recycler_view);
 
-        foodreports.setClickable(true);
+
         foodreports.setHasFixedSize(true);
         foodreports.setLayoutManager(new LinearLayoutManager(getContext()));
 

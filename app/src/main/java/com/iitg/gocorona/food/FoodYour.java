@@ -199,7 +199,7 @@ public class FoodYour extends Fragment {
 
         add2 = view.findViewById(R.id.add2);
 
-        foodreports.setClickable(true);
+
         foodreports.setHasFixedSize(true);
         foodreports.setLayoutManager(new LinearLayoutManager(getContext()));
 
