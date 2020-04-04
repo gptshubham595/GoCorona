@@ -100,21 +100,25 @@ public class RegisterDetails extends AppCompatActivity {
                 if (TextUtils.isEmpty(age.getText().toString())) {
                     age.setError("Age!");
                 }
-                if (TextUtils.isEmpty(locbox.getText().toString())) {
-                    locbox.setError("Location!");
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                checkLocationPermission();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, 50);
+//                if (TextUtils.isEmpty(locbox.getText().toString())) {
+//                    locbox.setError("Location!");
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                checkLocationPermission();
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }, 50);
+//
+//                }
+//                if (!TextUtils.isEmpty(locbox.getText().toString()) && !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
+//                    RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim());
 
-                }
-                if (!TextUtils.isEmpty(locbox.getText().toString()) && !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
+
+                    if ( !TextUtils.isEmpty(age.getText().toString()) && !TextUtils.isEmpty(name.getText().toString())) {
                     RegisterAccount(name.getText().toString().trim(), age.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim());
 
                 }
@@ -144,9 +148,9 @@ public class RegisterDetails extends AppCompatActivity {
                     userMap.put("age", age);
                     userMap.put("email", email);
                     userMap.put("status", "safe");
-                    userMap.put("city", cityName);
-                    userMap.put("latitude", latitude);
-                    userMap.put("longitude", longitude);
+//                    userMap.put("city", cityName);
+//                    userMap.put("latitude", latitude);
+//                    userMap.put("longitude", longitude);
                     userMap.put("image", "default");
                     userMap.put("device_token", device_token);
 

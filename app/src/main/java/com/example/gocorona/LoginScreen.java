@@ -195,9 +195,9 @@ public class LoginScreen extends AppCompatActivity implements
                     userMap.put("email", email);
                     userMap.put("age", "18");
                     userMap.put("status", "safe.");
-                    userMap.put("city", cityName);
-                    userMap.put("latitude", latitude);
-                    userMap.put("longitude", longitude);
+//                    userMap.put("city", cityName);
+//                    userMap.put("latitude", latitude);
+//                    userMap.put("longitude", longitude);
                     userMap.put("image", String.valueOf(photoUrl));
                     userMap.put("device_token", device_token);
 
