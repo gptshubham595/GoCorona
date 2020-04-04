@@ -15,7 +15,14 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="com.example.gocorona.permission.MAP_RECEIVE" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"
+        />
 
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" android:protectionLevel="dangerous"/>
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:protectionLevel="dangerous"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,7 +38,7 @@
         <activity android:name=".auth.ForgotPass" />
         <activity android:name=".auth.LoginAlready" />
         <activity android:name=".food.FoodActivity" />
-        <activity android:name=".Patient" />
+        <activity android:name=".patient.Patient" />
         <activity android:name=".MainActivity" />
         <activity android:name=".auth.RegisterDetails" />
         <activity android:name=".auth.LoginScreen">
@@ -45,10 +52,16 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="true" />
     </application>
 
 </manifest>

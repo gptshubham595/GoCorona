@@ -16,6 +16,7 @@ import com.example.gocorona.MainActivity;
 import com.example.gocorona.R;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class FoodActivity extends AppCompatActivity {
     TabLayout tabLayout;
@@ -25,11 +26,13 @@ public class FoodActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     private Toolbar mToolbar;
     TabItem youritem, nearitem;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+        mAuth = FirebaseAuth.getInstance();
+
         mToolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

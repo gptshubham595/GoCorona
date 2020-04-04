@@ -69,6 +69,7 @@ dependencies {
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 // Dependency for Google Sign-In
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
@@ -81,5 +82,8 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
 
     implementation 'com.github.sembozdemir:ViewPagerArrowIndicator:1.0.0'
+	implementation 'com.github.hotchemi:permissionsdispatcher:3.2.0'
+	annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.2.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 }

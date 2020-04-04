@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <Button
         android:id="@+id/patient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/food"
+        android:elevation="10"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:text="Patient" />
@@ -17,6 +24,7 @@
     <Button
         android:id="@+id/food"
         android:layout_width="wrap_content"
+        android:elevation="10"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
@@ -26,6 +34,7 @@
     <Button
         android:id="@+id/symptom"
         android:layout_width="wrap_content"
+        android:elevation="10"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"

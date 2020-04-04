@@ -1,8 +1,10 @@
-package com.example.gocorona;
+package com.example.gocorona.patient;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gocorona.R;
 
 public class Patient extends AppCompatActivity {
 
