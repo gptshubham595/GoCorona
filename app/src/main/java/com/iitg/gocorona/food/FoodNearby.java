@@ -1,11 +1,8 @@
 package com.iitg.gocorona.food;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,20 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.R;
-
-import java.util.HashMap;
 
 public class FoodNearby extends Fragment {
 
@@ -58,15 +48,16 @@ public class FoodNearby extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<foodusers, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodusers, AllFoodViewholder>(
-                foodusers.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
-        ) {
-            @Override
-            protected void populateViewHolder(final AllFoodViewholder viewHolder, final foodusers model, final int position) {
-                FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+        try {
+            FirebaseRecyclerAdapter<foodusers, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodusers, AllFoodViewholder>(
+                    foodusers.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
+            ) {
+                @Override
+                protected void populateViewHolder(final AllFoodViewholder viewHolder, final foodusers model, final int position) {
+                    FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                 viewHolder.setFoodQuery(model.getFoodQuery());
                                 viewHolder.setContact(model.getContact());
                                 viewHolder.setLocation(model.getLocation());
@@ -80,20 +71,22 @@ public class FoodNearby extends Fragment {
                                 });
 
                             }
-                    }
+                        }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
 
 
-
-            }
-        };
-        foodreports.setAdapter(firebaseRecyclerAdapter);
-
+                }
+            };
+            foodreports.setAdapter(firebaseRecyclerAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "ERROR..", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static class AllFoodViewholder extends RecyclerView.ViewHolder {
@@ -131,7 +124,7 @@ public class FoodNearby extends Fragment {
         public void setLocation(final String location) {
             TextView locationquery = mview.findViewById(R.id.location);
             locationquery.setText(location);
-            Button locationbtn = (Button) mview.findViewById(R.id.locationbtn);
+            Button locationbtn = mview.findViewById(R.id.locationbtn);
             locationbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

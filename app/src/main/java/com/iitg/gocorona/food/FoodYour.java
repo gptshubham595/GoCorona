@@ -32,7 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.R;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class FoodYour extends Fragment {
@@ -58,27 +57,35 @@ public class FoodYour extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder>(
-                foodUsersOwn.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
-        ) {
-            @Override
-            protected void populateViewHolder(AllFoodViewholder viewHolder, final foodUsersOwn model, final int position) {
+        try {
+            add.setVisibility(View.INVISIBLE);
+            add2.setVisibility(View.VISIBLE);
+            FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder>(
+                    foodUsersOwn.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
+            ) {
+                @Override
+                protected void populateViewHolder(AllFoodViewholder viewHolder, final foodUsersOwn model, final int position) {
 
 
-                viewHolder.setFoodQuery(model.getFoodQuery());
+                    viewHolder.setFoodQuery(model.getFoodQuery());
 
-                final String posid = getRef(position).getKey();
-                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDialog2(getContext(),posid);
+                    final String posid = getRef(position).getKey();
+                    viewHolder.mview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog2(getContext(), posid);
 
-                    }
-                });
-            }
-        };
-        foodreports.setAdapter(firebaseRecyclerAdapter);
-
+                        }
+                    });
+                }
+            };
+            foodreports.setAdapter(firebaseRecyclerAdapter);
+        } catch (Exception e) {
+            add.setVisibility(View.VISIBLE);
+            add2.setVisibility(View.INVISIBLE);
+            e.printStackTrace();
+            Toast.makeText(getContext(), "ERROR..", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showDialog2(final Context context, final String pos) {

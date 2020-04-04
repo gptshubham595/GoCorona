@@ -31,16 +31,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.MainActivity;
 import com.iitg.gocorona.R;
-import com.iitg.gocorona.food.FoodYour;
-import com.iitg.gocorona.food.foodusers;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class PatientActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private FirebaseAuth mAuth;
-    long i=0;
+    long i = 0;
     Button add, add2;
     RecyclerView patientreports;
     DatabaseReference allpatientdatabaseReference;
@@ -55,23 +52,23 @@ public class PatientActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                i = geti();
             }
-        },500);
+        }, 500);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                i = geti();
             }
-        },1500);
+        }, 1500);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                i = geti();
             }
-        },2500);
+        }, 2500);
 
         mToolbar = findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
@@ -95,26 +92,26 @@ public class PatientActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=geti();
+                i = geti();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        showDialog(getApplicationContext(),String.valueOf(i));
+                        showDialog(getApplicationContext(), String.valueOf(i));
                     }
-                },100);
+                }, 100);
             }
         });
 
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=geti();
+                i = geti();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        showDialog(getApplicationContext(),String.valueOf(i));
+                        showDialog(getApplicationContext(), String.valueOf(i));
                     }
-                },100);
+                }, 100);
 
             }
         });
@@ -161,7 +158,7 @@ public class PatientActivity extends AppCompatActivity {
                     food.setError("Write his Last known location!");
 
                 if (!TextUtils.isEmpty(food.getText().toString().trim()) && !TextUtils.isEmpty(contact.getText().toString().trim()) && !TextUtils.isEmpty(location.getText().toString().trim())) {
-                    addtodatabase(food.getText().toString().trim(), contact.getText().toString().trim(), location.getText().toString().trim(),pos);
+                    addtodatabase(food.getText().toString().trim(), contact.getText().toString().trim(), location.getText().toString().trim(), pos);
                     dialog.dismiss();
                 }
             }
@@ -171,24 +168,33 @@ public class PatientActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerAdapter<reportedUsers, AllPatientViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<reportedUsers, AllPatientViewholder>(
-                reportedUsers.class, R.layout.layout_food_reported_own, AllPatientViewholder.class, allpatientdatabaseReference
-        ) {
-            @Override
-            protected void populateViewHolder(AllPatientViewholder viewHolder, final reportedUsers model, final int position) {
-                viewHolder.setReported(model.getReported());
+        try {
+            add.setVisibility(View.INVISIBLE);
+            add2.setVisibility(View.VISIBLE);
 
-                final String posid = getRef(position).getKey();
-                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showDialog2(getApplicationContext(),posid);
-                    }
-                });
-            }
-        };
-        patientreports.setAdapter(firebaseRecyclerAdapter);
+            FirebaseRecyclerAdapter<reportedUsers, AllPatientViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<reportedUsers, AllPatientViewholder>(
+                    reportedUsers.class, R.layout.layout_food_reported_own, AllPatientViewholder.class, allpatientdatabaseReference
+            ) {
+                @Override
+                protected void populateViewHolder(AllPatientViewholder viewHolder, final reportedUsers model, final int position) {
+                    viewHolder.setReported(model.getReported());
 
+                    final String posid = getRef(position).getKey();
+                    viewHolder.mview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showDialog2(getApplicationContext(), posid);
+                        }
+                    });
+                }
+            };
+            patientreports.setAdapter(firebaseRecyclerAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            add.setVisibility(View.VISIBLE);
+            add2.setVisibility(View.INVISIBLE);
+            Toast.makeText(PatientActivity.this, "ERROR..", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showDialog2(Context context, final String pos) {
@@ -230,6 +236,7 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
     }
+
     public static class AllPatientViewholder extends RecyclerView.ViewHolder {
         View mview;
 
@@ -245,11 +252,12 @@ public class PatientActivity extends AppCompatActivity {
         }
 
     }
+
     private void addtodatabase(final String food, final String contact, final String location, String pos) {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-        i=geti();
+        i = geti();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -272,7 +280,7 @@ public class PatientActivity extends AppCompatActivity {
                 });
 
             }
-        },100);
+        }, 100);
 
     }
 
@@ -286,9 +294,9 @@ public class PatientActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                if(!dataSnapshot.exists()){}
-                else{
-                    i[0] =dataSnapshot.getChildrenCount();
+                if (!dataSnapshot.exists()) {
+                } else {
+                    i[0] = dataSnapshot.getChildrenCount();
                 }
             }
 
