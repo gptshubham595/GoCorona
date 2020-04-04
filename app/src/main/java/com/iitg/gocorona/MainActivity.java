@@ -36,9 +36,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.auth.LoginScreen;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
+
+import java.util.Date;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
@@ -272,6 +276,18 @@ public class MainActivity extends AppCompatActivity {
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = current_user.getUid();
+
+
+        Date date = new Date();
+        long timemill = date.getTime();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child(String.valueOf(timemill));
+        mDatabase.setValue(Double.toString(location.getLatitude()) + "," +
+                Double.toString(location.getLongitude()));
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
