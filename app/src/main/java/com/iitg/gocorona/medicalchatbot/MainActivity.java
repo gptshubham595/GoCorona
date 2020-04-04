@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View arg0) {
                 setContentView(R.layout.activity_main_chatbot);
                 contentview = R.layout.activity_main_chatbot;
-                int v = R.layout.activity_main;
+                int v = R.layout.activity_main_chatbot;
                 chatList = (ListView) findViewById(R.id.chatlist);
                 chatText = (EditText) findViewById(R.id.msgtyped);
                 changeview();

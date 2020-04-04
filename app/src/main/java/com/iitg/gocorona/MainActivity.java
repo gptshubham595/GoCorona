@@ -34,7 +34,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.iitg.gocorona.auth.LoginScreen;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
 

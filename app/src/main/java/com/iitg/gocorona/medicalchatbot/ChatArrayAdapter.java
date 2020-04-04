@@ -1,5 +1,6 @@
 package com.iitg.gocorona.medicalchatbot;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
