@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,8 +27,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:gravity="center_horizontal"
-        android:text="Symptomate is always ready to help you.."
-        android:textColor="#fff"
+        android:text="We are always ready to help you .."
+        android:textColor="#000"
         android:textSize="20sp"
         android:textStyle="italic"
         android:typeface="sans"
