@@ -3,6 +3,7 @@ package com.example.gocorona;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class FoodActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class FoodActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     private Toolbar mToolbar;
+    TabItem youritem, nearitem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,14 @@ public class FoodActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        tabLayout=findViewById(R.id.tabLayout);
+        youritem = findViewById(R.id.yourItem);
+        nearitem = findViewById(R.id.nearItem);
+        ViewGroup.LayoutParams params = tabLayout.getLayoutParams();
+        params.width = (ViewGroup.LayoutParams.MATCH_PARENT) / 3;
+        youritem.setLayoutParams(params);
+        nearitem.setLayoutParams(params);
+
+        tabLayout = findViewById(R.id.tabLayout);
         fragment = new FoodYour();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
