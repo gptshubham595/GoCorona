@@ -63,12 +63,13 @@ public class LoginScreen extends AppCompatActivity implements
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     Button email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        email=findViewById(R.id.email);
+        email = findViewById(R.id.email);
         already = findViewById(R.id.already);
         already.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +81,8 @@ public class LoginScreen extends AppCompatActivity implements
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           Intent I=new Intent(LoginScreen.this,RegisterDetails.class);
-           startActivity(I);
+                Intent I = new Intent(LoginScreen.this, RegisterDetails.class);
+                startActivity(I);
 
             }
         });
@@ -103,6 +104,7 @@ public class LoginScreen extends AppCompatActivity implements
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
+
 
     }
 

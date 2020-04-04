@@ -70,5 +70,16 @@ dependencies {
 // Dependency for Google Sign-In
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+
+    implementation "com.github.JeovaniMartinez:AndroidViewPagerIndicator:0.1.0"
+
+    implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
+
+    //Optional: see how to use the utility.
+    implementation 'com.ogaclejapan.smarttablayout:utils-v4:2.0.0@aar'
+
+    implementation 'com.github.sembozdemir:ViewPagerArrowIndicator:1.0.0'
 
 }

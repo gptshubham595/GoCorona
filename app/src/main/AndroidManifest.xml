@@ -23,7 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotPass"></activity>
+        <activity android:name=".FoodYour"></activity>
+        <activity android:name=".FoodNearby" />
+        <activity android:name=".ForgotPass" />
         <activity android:name=".LoginAlready" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".Patient" />
