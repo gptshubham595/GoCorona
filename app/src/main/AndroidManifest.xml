@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gocorona">
+    package="com.iitg.gocorona">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -31,16 +31,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".MainActivity" />
+
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
+
+        <activity android:name=".food.FoodActivity" />
         <activity android:name=".food.FoodYour" />
         <activity android:name=".food.FoodNearby" />
+
+        <activity android:name=".patient.Patient" />
+
         <activity android:name=".auth.ForgotPass" />
         <activity android:name=".auth.LoginAlready" />
-        <activity android:name=".food.FoodActivity" />
-        <activity android:name=".patient.Patient" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".auth.RegisterDetails" />
+
+
         <activity android:name=".auth.LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

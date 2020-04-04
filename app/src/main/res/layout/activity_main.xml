@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/food"
-        android:elevation="10"
+
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:text="Patient" />
@@ -24,7 +24,7 @@
     <Button
         android:id="@+id/food"
         android:layout_width="wrap_content"
-        android:elevation="10"
+
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
@@ -34,10 +34,20 @@
     <Button
         android:id="@+id/symptom"
         android:layout_width="wrap_content"
-        android:elevation="10"
+
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:layout_below="@id/patient"
+        android:text="Symptom" />
+
+
+    <Button
+        android:id="@+id/medicalChatbot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_below="@id/symptom"
         android:text="Symptom" />
 </RelativeLayout>
