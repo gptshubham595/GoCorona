@@ -115,7 +115,13 @@ public class PatientActivity extends AppCompatActivity {
         allpatientdatabaseReference = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token);
         allpatientdatabaseReference.keepSynced(true);
 
-
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onStart();
+                swipe.setRefreshing(false);
+            }
+        });
     }
 
     private void showDialog(PatientActivity patientActivity, final String pos) {
@@ -247,12 +253,16 @@ public class PatientActivity extends AppCompatActivity {
 
     private void addtodatabase(final String food, final String contact, final String location, String pos) {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = current_user.getUid();
+        final String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-
+        i=geti();
+        i++;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+                mi.setValue(i);
+
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token).child(String.valueOf(i));
                 newfoodquery.keepSynced(true);
                 HashMap<String, String> userMap = new HashMap<>();
@@ -279,16 +289,19 @@ public class PatientActivity extends AppCompatActivity {
     private long geti() {
         final long[] i = {0};
         String device_token = FirebaseInstanceId.getInstance().getToken();
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token);
-        mi.keepSynced(true);
-        mi.addValueEventListener(new ValueEventListener() {
+        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = current_user.getUid();
+        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+        mi2.keepSynced(true);
+        mi2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 if (!dataSnapshot.exists()) {
                 } else {
-                    i[0] = dataSnapshot.getChildrenCount();
+                    String value = dataSnapshot.getValue(String.class);
+                    i[0] = Integer.parseInt(value);
                 }
             }
 

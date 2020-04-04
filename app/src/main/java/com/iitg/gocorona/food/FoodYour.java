@@ -167,25 +167,11 @@ public class FoodYour extends Fragment {
         },2500);
 
         swipe = view.findViewById(R.id.swipe);
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder>(
-                        foodUsersOwn.class, R.layout.layout_food_query_own, AllFoodViewholder.class, allfooddatabaseReference
-                ) {
-                    @Override
-                    protected void populateViewHolder(AllFoodViewholder viewHolder, final foodUsersOwn model, final int position) {
-                        viewHolder.setFoodQuery(model.getFoodQuery());
-                        final String posid = getRef(position).getKey();
-                        viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showDialog2(getContext(),posid);
-                            }
-                        });
-                    }
-                };
-                foodreports.setAdapter(firebaseRecyclerAdapter);
+                onStart();
                 swipe.setRefreshing(false);
             }
         });
@@ -266,12 +252,15 @@ public class FoodYour extends Fragment {
 
     private void addtodatabase(final String food, final String contact, final String location) {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = current_user.getUid();
+        final String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-
+        i=geti();
+        i++;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+                mi.setValue(i);
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("food").child(device_token).child(String.valueOf(i));
                 newfoodquery.keepSynced(true);
                 HashMap<String, String> userMap = new HashMap<>();
@@ -290,6 +279,8 @@ public class FoodYour extends Fragment {
                     }
                 });
 
+
+
             }
         },100);
 
@@ -297,16 +288,19 @@ public class FoodYour extends Fragment {
     private long geti() {
         final long[] i = {0};
         String device_token = FirebaseInstanceId.getInstance().getToken();
-        DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Reports").child("food").child(device_token);
-        mi.keepSynced(true);
-        mi.addValueEventListener(new ValueEventListener() {
+        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = current_user.getUid();
+        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+        mi2.keepSynced(true);
+        mi2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                if(!dataSnapshot.exists()){}
-                else{
-                    i[0] =dataSnapshot.getChildrenCount();
+                if (!dataSnapshot.exists()) {
+                } else {
+                    String value = dataSnapshot.getValue(String.class);
+                    i[0] = Integer.parseInt(value);
                 }
             }
 

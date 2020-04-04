@@ -32,7 +32,6 @@ public class FoodNearby extends Fragment {
     }
 
 
-
     RecyclerView foodreports;
     Query allfooddatabaseReference;
     FirebaseAuth mAuth;
@@ -51,7 +50,7 @@ public class FoodNearby extends Fragment {
                     FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                            if (dataSnapshot.exists()) {
                                 viewHolder.setFoodQuery(model.getFoodQuery());
                                 viewHolder.setContact(model.getContact());
                                 viewHolder.setLocation(model.getLocation());
@@ -64,7 +63,7 @@ public class FoodNearby extends Fragment {
                                     }
                                 });
 
-
+                            }
                         }
 
                         @Override
@@ -132,36 +131,20 @@ public class FoodNearby extends Fragment {
         }
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_food_your, container, false);
+        View view = inflater.inflate(R.layout.fragment_food_your, container, false);
 
         mAuth = FirebaseAuth.getInstance();
 
         swipe = view.findViewById(R.id.swipe);
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                FirebaseRecyclerAdapter<foodusers, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodusers, AllFoodViewholder>(
-                        foodusers.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
-                ) {
-                    @Override
-                    protected void populateViewHolder(AllFoodViewholder viewHolder, final foodusers model, final int position) {
-                        viewHolder.setFoodQuery(model.getFoodQuery());
-                        viewHolder.setContact(model.getContact());
-                        viewHolder.setLocation(model.getLocation());
-                        final String posid = getRef(position).getKey();
-                        viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+91" + model.getContact(), null));
-                                startActivity(i);
-                            }
-                        });
-                    }
-                };
-                foodreports.setAdapter(firebaseRecyclerAdapter);
+                onStart();
                 swipe.setRefreshing(false);
             }
         });
@@ -176,7 +159,6 @@ public class FoodNearby extends Fragment {
         allfooddatabaseReference.keepSynced(true);
         return view;
     }
-
 
 
 }
