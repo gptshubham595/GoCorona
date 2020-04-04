@@ -210,6 +210,8 @@ public class FoodYour extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                i=geti();
+                i++;
                 showDialog(getContext());
             }
         });
@@ -217,7 +219,8 @@ public class FoodYour extends Fragment {
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(getContext());
+                i=geti();
+                i++;showDialog(getContext());
             }
         });
         return view;
@@ -266,6 +269,7 @@ public class FoodYour extends Fragment {
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
         i=geti();
+        i++;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

@@ -1,7 +1,6 @@
 package com.iitg.gocorona.patient;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -93,9 +92,11 @@ public class PatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 i = geti();
+                i++;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        Toast.makeText(PatientActivity.this, i + "", Toast.LENGTH_SHORT).show();
                         showDialog(PatientActivity.this, String.valueOf(i));
                     }
                 }, 100);
@@ -106,6 +107,7 @@ public class PatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 i = geti();
+                i++;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -129,7 +131,7 @@ public class PatientActivity extends AppCompatActivity {
 
     }
 
-    private void showDialog( PatientActivity patientActivity, final String pos) {
+    private void showDialog(PatientActivity patientActivity, final String pos) {
         final Dialog dialog = new Dialog(patientActivity);
         dialog.setTitle("ADD YOUR FOOD CRISIS");
         dialog.setCancelable(false);
@@ -261,6 +263,8 @@ public class PatientActivity extends AppCompatActivity {
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
         i = geti();
+        
+        i++;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
