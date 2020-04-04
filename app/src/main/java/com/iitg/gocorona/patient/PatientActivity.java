@@ -109,7 +109,7 @@ public class PatientActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        showDialog(getApplicationContext(), String.valueOf(i));
+                        showDialog(PatientActivity.this, String.valueOf(i));
                     }
                 }, 100);
 
@@ -129,8 +129,8 @@ public class PatientActivity extends AppCompatActivity {
 
     }
 
-    private void showDialog(Context context, final String pos) {
-        final Dialog dialog = new Dialog(context);
+    private void showDialog( PatientActivity patientActivity, final String pos) {
+        final Dialog dialog = new Dialog(patientActivity);
         dialog.setTitle("ADD YOUR FOOD CRISIS");
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_option_patient);
@@ -198,7 +198,7 @@ public class PatientActivity extends AppCompatActivity {
     }
 
     private void showDialog2(Context context, final String pos) {
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(getActivity());
         dialog.setTitle("Edit");
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_option_patient_choice);

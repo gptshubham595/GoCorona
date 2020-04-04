@@ -83,7 +83,7 @@ public class FoodYour extends Fragment {
     }
 
     private void showDialog2(final Context context, final String pos) {
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(getActivity());
         dialog.setTitle("Edit");
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_option_food_choice);
@@ -224,7 +224,7 @@ public class FoodYour extends Fragment {
 
     private void showDialog(Context context) {
         Toast.makeText(context, "Shohwing", Toast.LENGTH_SHORT).show();
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(getActivity());
         dialog.setTitle("ADD YOUR FOOD CRISIS");
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_option_food);
