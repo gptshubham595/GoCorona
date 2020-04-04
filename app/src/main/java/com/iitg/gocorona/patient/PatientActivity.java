@@ -85,7 +85,7 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
 
-        patientreports = findViewById(R.id.recycler_view);
+        patientreports = findViewById(R.id.recycler);
         add = findViewById(R.id.add);
         add2 = findViewById(R.id.add2);
 

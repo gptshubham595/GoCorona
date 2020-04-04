@@ -39,12 +39,6 @@ public class FoodYour extends Fragment {
     public FoodYour() {
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_food_your, container, false);
-    }
 
     Button add, add2;
     long i=0;
@@ -144,10 +138,10 @@ public class FoodYour extends Fragment {
         }
 
     }
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_food_your, container, false);
 
         mAuth = FirebaseAuth.getInstance();
         new Handler().postDelayed(new Runnable() {
@@ -172,30 +166,9 @@ public class FoodYour extends Fragment {
         },2500);
 
         swipe = view.findViewById(R.id.swipe);
-        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<foodUsersOwn, AllFoodViewholder>(
-                        foodUsersOwn.class, R.layout.layout_food_query_own, AllFoodViewholder.class, allfooddatabaseReference
-                ) {
-                    @Override
-                    protected void populateViewHolder(AllFoodViewholder viewHolder, final foodUsersOwn model, final int position) {
-                        viewHolder.setFoodQuery(model.getFoodQuery());
-                        final String posid = getRef(position).getKey();
-                        viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showDialog2(getContext(),posid);
-                            }
-                        });
-                    }
-                };
-                foodreports.setAdapter(firebaseRecyclerAdapter);
-                swipe.setRefreshing(false);
-            }
-        });
+
         add = view.findViewById(R.id.add);
-        foodreports = view.findViewById(R.id.recycler_view);
+        foodreports = (RecyclerView) view.findViewById(R.id.recycler);
 
         add2 = view.findViewById(R.id.add2);
 
@@ -224,6 +197,7 @@ public class FoodYour extends Fragment {
                 showDialog(getContext());
             }
         });
+        return view;
     }
 
     private void showDialog(Context context) {

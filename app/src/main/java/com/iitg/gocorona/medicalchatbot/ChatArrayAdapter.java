@@ -286,7 +286,7 @@ class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
                 myDataset.add(str[i]);
             }
 
-            myRecyclerView = convertView.findViewById(R.id.recycler_view);
+            myRecyclerView = convertView.findViewById(R.id.recycler);
             myRecyclerView.setHasFixedSize(true);
             myLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
             myRecyclerView.setLayoutManager(myLayoutManager);

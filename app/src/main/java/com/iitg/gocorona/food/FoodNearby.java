@@ -31,12 +31,6 @@ public class FoodNearby extends Fragment {
     public FoodNearby() {
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_food_your, container, false);
-    }
 
 
     RecyclerView foodreports;
@@ -138,10 +132,10 @@ public class FoodNearby extends Fragment {
         }
 
     }
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_food_your, container, false);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -171,7 +165,7 @@ public class FoodNearby extends Fragment {
                 swipe.setRefreshing(false);
             }
         });
-        foodreports = view.findViewById(R.id.recycler_view);
+        foodreports = view.findViewById(R.id.recycler);
 
 
         foodreports.setHasFixedSize(true);
@@ -180,7 +174,7 @@ public class FoodNearby extends Fragment {
 
         allfooddatabaseReference = FirebaseDatabase.getInstance().getReference().child("Reports").child("food");
         allfooddatabaseReference.keepSynced(true);
-
+        return view;
     }
 
 
