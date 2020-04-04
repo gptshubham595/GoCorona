@@ -98,13 +98,13 @@ public class LoginAlready extends AppCompatActivity {
                     mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            if (mAuth.getCurrentUser().isEmailVerified()) {
+//                            if (mAuth.getCurrentUser().isEmailVerified()) {
                                 Intent mainIntent = new Intent(LoginAlready.this, MainActivity.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(mainIntent);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Please Verify Email or enter correct details", Toast.LENGTH_SHORT).show();
-                            }
+//                            } else {
+//                                Toast.makeText(getApplicationContext(), "Please Verify Email or enter correct details", Toast.LENGTH_SHORT).show();
+//                            }
                             finish();
 
 

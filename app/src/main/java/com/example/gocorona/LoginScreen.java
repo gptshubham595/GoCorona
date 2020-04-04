@@ -119,6 +119,12 @@ public class LoginScreen extends AppCompatActivity {
 // Check for existing Google Sign In account, if the user is already signed in
 // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        if(account!=null){
+            Intent mainIntent = new Intent(LoginScreen.this, MainActivity.class);
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(mainIntent);
+            finish();}
         updateUI(account);
     }
 
