@@ -267,7 +267,7 @@ public class PatientActivity extends AppCompatActivity {
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token).child(String.valueOf(i));
                 newfoodquery.keepSynced(true);
                 HashMap<String, String> userMap = new HashMap<>();
-                userMap.put("Reported", food);
+                userMap.put("reported", food);
                 userMap.put("contact", contact);
                 userMap.put("location", location);
 
