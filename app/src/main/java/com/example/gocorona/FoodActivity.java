@@ -39,6 +39,7 @@ public class FoodActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        tabLayout=findViewById(R.id.tabLayout);
         fragment = new FoodYour();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
