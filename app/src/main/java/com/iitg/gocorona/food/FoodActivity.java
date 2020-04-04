@@ -49,10 +49,10 @@ public class FoodActivity extends AppCompatActivity {
         });
         youritem = findViewById(R.id.yourItem);
         nearitem = findViewById(R.id.nearItem);
-        ViewGroup.LayoutParams params = tabLayout.getLayoutParams();
-        params.width = (ViewGroup.LayoutParams.MATCH_PARENT) / 3;
-        youritem.setLayoutParams(params);
-        nearitem.setLayoutParams(params);
+//        ViewGroup.LayoutParams params = tabLayout.getLayoutParams();
+//        params.width = (ViewGroup.LayoutParams.MATCH_PARENT) / 3;
+//        youritem.setLayoutParams(params);
+//        nearitem.setLayoutParams(params);
 
         tabLayout = findViewById(R.id.tabLayout);
         fragment = new FoodYour();

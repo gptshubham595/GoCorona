@@ -20,7 +20,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.medicalchatbot.Welcome;
-import com.iitg.gocorona.patient.Patient;
+import com.iitg.gocorona.patient.PatientActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Patient.class);
+                Intent i = new Intent(MainActivity.this, PatientActivity.class);
                 startActivity(i);
             }
         });

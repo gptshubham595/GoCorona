@@ -40,7 +40,7 @@
         <activity android:name=".food.FoodYour" />
         <activity android:name=".food.FoodNearby" />
 
-        <activity android:name=".patient.Patient" />
+        <activity android:name=".patient.PatientActivity" />
 
         <activity android:name=".auth.ForgotPass" />
         <activity android:name=".auth.LoginAlready" />

@@ -1,19 +1,41 @@
 package com.iitg.gocorona.food;
 
 public  class foodUsersOwn {
-    public  String foodQuery;
-    public foodUsersOwn(){
+    public  String foodQuery,contact,location;
+    public foodUsersOwn() {
 
     }
+    public foodUsersOwn(String foodQuery) {
+        this.foodQuery = foodQuery;
+    }
+
     public foodUsersOwn(String foodQuery, String contact, String location) {
         this.foodQuery = foodQuery;
-
+        this.contact = contact;
+        this.location=location;
     }
 
     public String getFoodQuery() {
         return foodQuery;
     }
 
+    public void setFoodQuery(String heading) {
+        this.foodQuery = heading;
+    }
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String url) {
+        this.contact = url;
+    }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String image) {
+        this.location = image;
+    }
 
 
 

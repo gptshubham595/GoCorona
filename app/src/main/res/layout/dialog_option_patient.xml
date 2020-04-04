@@ -1,0 +1,53 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="60dp"
+    android:layout_gravity="center"
+    android:layout_marginRight="60dp"
+    android:layout_marginBottom="60dp"
+    android:layout_marginTop="20dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/foodqueryDIALOG"
+        android:layout_marginTop="5dp"
+        android:hint="Person name ABC is suffering from corona or has travelled outside within 14days time interval span"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/contactnumberDIALOG"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/foodqueryDIALOG"
+        android:hint="Contact Number .."
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="Location"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/contactnumberDIALOG"
+        android:id="@+id/locationqueryDIALOG"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@id/locationqueryDIALOG"
+        android:id="@+id/cancelDIALOG"
+        android:text="CANCEL"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@id/locationqueryDIALOG"
+        android:id="@+id/okDIALOG"
+        android:text="OK"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@android:color/holo_green_dark"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+
+</ScrollView>

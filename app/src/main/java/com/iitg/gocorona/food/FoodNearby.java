@@ -25,8 +25,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.R;
 
@@ -46,7 +50,7 @@ public class FoodNearby extends Fragment {
 
 
     RecyclerView foodreports;
-    DatabaseReference allfooddatabaseReference;
+    Query allfooddatabaseReference;
     FirebaseAuth mAuth;
     SwipeRefreshLayout swipe;
 
@@ -58,18 +62,34 @@ public class FoodNearby extends Fragment {
                 foodusers.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
         ) {
             @Override
-            protected void populateViewHolder(AllFoodViewholder viewHolder, final foodusers model, final int position) {
-                viewHolder.setFoodQuery(model.getFoodQuery());
-                viewHolder.setContact(model.getContact());
-                viewHolder.setLocation(model.getLocation());
-                final String posid = getRef(position).getKey();
-                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
+            protected void populateViewHolder(final AllFoodViewholder viewHolder, final foodusers model, final int position) {
+                FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+91" + model.getContact(), null));
-                        startActivity(i);
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                                viewHolder.setFoodQuery(model.getFoodQuery());
+                                viewHolder.setContact(model.getContact());
+                                viewHolder.setLocation(model.getLocation());
+                                final String posid = getRef(position).getKey();
+                                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+91" + model.getContact(), null));
+                                        startActivity(i);
+                                    }
+                                });
+
+                            }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
                 });
+
+
+
             }
         };
         foodreports.setAdapter(firebaseRecyclerAdapter);
@@ -167,65 +187,9 @@ public class FoodNearby extends Fragment {
 
         allfooddatabaseReference = FirebaseDatabase.getInstance().getReference().child("Reports").child("food");
         allfooddatabaseReference.keepSynced(true);
-        
-    }
-
-    private void showDialog(Context context) {
-        final Dialog dialog = new Dialog(context);
-        dialog.setTitle("ADD YOUR FOOD CRISIS");
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_option_food);
-        Button ok = dialog.findViewById(R.id.okDIALOG);
-        Button cancel = dialog.findViewById(R.id.cancelDIALOG);
-        final TextView food, contact, location;
-        food = dialog.findViewById(R.id.foodqueryDIALOG);
-        contact = dialog.findViewById(R.id.contactnumberDIALOG);
-        location = dialog.findViewById(R.id.locationqueryDIALOG);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(food.getText().toString().trim()))
-                    food.setError("Write about food shortage!");
-                if (TextUtils.isEmpty(contact.getText().toString().trim()))
-                    food.setError("Write your contact!");
-                if (TextUtils.isEmpty(location.getText().toString().trim()))
-                    food.setError("Write your location!");
-
-                if (!TextUtils.isEmpty(food.getText().toString().trim()) && !TextUtils.isEmpty(contact.getText().toString().trim()) && !TextUtils.isEmpty(location.getText().toString().trim())) {
-                    addtodatabase(food.getText().toString().trim(), contact.getText().toString().trim(), location.getText().toString().trim());
-                    dialog.dismiss();
-                }
-            }
-        });
-    }
-
-    private void addtodatabase(String food, String contact, String location) {
-        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = current_user.getUid();
-        String device_token = FirebaseInstanceId.getInstance().getToken();
-        DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("food").child(device_token);
-        HashMap<String, String> userMap = new HashMap<>();
-        userMap.put("foodQuery", food);
-        userMap.put("contact", contact);
-        userMap.put("location", location);
-
-        newfoodquery.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getContext(), "Posted!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "Unknown Error.", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
     }
+
+
+
 }
