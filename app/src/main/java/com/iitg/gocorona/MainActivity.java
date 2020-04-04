@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         medicalChatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Welcome.class);
+                Intent i = new Intent(MainActivity.this, com.iitg.gocorona.medicalchatbot.MainActivity.class);
                 startActivity(i);
             }
         });

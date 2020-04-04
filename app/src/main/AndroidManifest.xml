@@ -36,6 +36,10 @@
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
 
+
+        <activity android:name=".medicalchatbot.MainActivity" />
+
+
         <activity android:name=".food.FoodActivity" />
         <activity android:name=".food.FoodYour" />
         <activity android:name=".food.FoodNearby" />

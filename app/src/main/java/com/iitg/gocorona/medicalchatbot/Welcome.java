@@ -22,9 +22,6 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-/**
- * Created by mohamed-soliman1 on 7/10/2017.
- */
 
 public class Welcome extends AsyncTask<String, Void, JSONObject> {
     private Context mContext;
