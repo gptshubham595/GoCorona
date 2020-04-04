@@ -66,8 +66,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.1'
     implementation 'com.google.firebase:firebase-messaging:19.0.0'
 
+    implementation 'com.firebaseui:firebase-ui-database:2.0.1'
+
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
-// Dependency for Google Sign-In
+    // Dependency for Google Sign-In
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 

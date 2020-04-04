@@ -5,17 +5,49 @@
     android:layout_height="match_parent"
     tools:context=".food.FoodYour">
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/shape"
-        android:backgroundTint="#040D3C"
-        android:drawableLeft="@drawable/ic_add_black_24dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:text="ADD ME"
-        android:textColor="#fff"
-        android:textStyle="bold" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipe"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/add2"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/shape"
+                android:backgroundTint="#040D3C"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/ic_add_black_24dp"
+                android:gravity="center"
+                android:paddingLeft="10dp" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/shape"
+                android:backgroundTint="#040D3C"
+                android:drawableLeft="@drawable/ic_add_black_24dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="ADD ME"
+                android:layout_centerInParent="true"
+                android:textColor="#fff"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="80dp" />
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </FrameLayout>
