@@ -260,7 +260,7 @@ public class PatientActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("ReportedPaient");
                 mi.setValue(i);
 
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("patient").child(device_token).child(String.valueOf(i));
@@ -291,7 +291,7 @@ public class PatientActivity extends AppCompatActivity {
         String device_token = FirebaseInstanceId.getInstance().getToken();
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
-        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("ReportedPatient");
         mi2.keepSynced(true);
         mi2.addValueEventListener(new ValueEventListener() {
             @Override

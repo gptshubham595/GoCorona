@@ -259,7 +259,7 @@ public class FoodYour extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+                DatabaseReference mi = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("ReportedFood");
                 mi.setValue(i);
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("food").child(device_token).child(String.valueOf(i));
                 newfoodquery.keepSynced(true);
@@ -290,7 +290,7 @@ public class FoodYour extends Fragment {
         String device_token = FirebaseInstanceId.getInstance().getToken();
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
-        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("Reported");
+        DatabaseReference mi2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("ReportedFood");
         mi2.keepSynced(true);
         mi2.addValueEventListener(new ValueEventListener() {
             @Override
