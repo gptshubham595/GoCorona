@@ -285,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
         Date date = new Date();
         long timemill = date.getTime();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child(String.valueOf(timemill));
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("travel").child(String.valueOf(timemill));
         mDatabase.setValue(Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude()));
     }

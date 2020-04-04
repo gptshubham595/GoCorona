@@ -263,7 +263,7 @@ public class PatientActivity extends AppCompatActivity {
         String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
         i = geti();
-        
+
         i++;
         new Handler().postDelayed(new Runnable() {
             @Override
