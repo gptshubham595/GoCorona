@@ -163,6 +163,8 @@ public class PatientActivity extends AppCompatActivity {
                 }
             }
         });
+
+        dialog.show();
     }
 
     @Override
@@ -235,6 +237,7 @@ public class PatientActivity extends AppCompatActivity {
 
             }
         });
+        dialog.show();
     }
 
     public static class AllPatientViewholder extends RecyclerView.ViewHolder {

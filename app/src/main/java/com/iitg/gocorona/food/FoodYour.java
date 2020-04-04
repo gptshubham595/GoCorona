@@ -121,6 +121,7 @@ public class FoodYour extends Fragment {
 
             }
         });
+        dialog.show();
     }
 
     public static class AllFoodViewholder extends RecyclerView.ViewHolder {
@@ -257,6 +258,7 @@ public class FoodYour extends Fragment {
                 }
             }
         });
+        dialog.show();
     }
 
     private void addtodatabase(final String food, final String contact, final String location) {
