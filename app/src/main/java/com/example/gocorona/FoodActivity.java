@@ -3,18 +3,22 @@ package com.example.gocorona;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.ogaclejapan.smarttablayout.SmartTabLayout;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
+import com.google.android.material.tabs.TabLayout;
 
 public class FoodActivity extends AppCompatActivity {
-    ViewPager viewPager;
-    FragmentPagerItemAdapter adapter;
+    TabLayout tabLayout;
+    FrameLayout frameLayout;
+    Fragment fragment = null;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     private Toolbar mToolbar;
 
     @Override
@@ -35,16 +39,41 @@ public class FoodActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        fragment = new FoodYour();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.commit();
 
-        adapter = new FragmentPagerItemAdapter(
-                getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("YOUR", FoodYour.class)
-                .add("NEARBY", FoodNearby.class)
-                .create());
-        viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(adapter);
-        SmartTabLayout viewPagerTab = findViewById(R.id.tabLayout);
-        viewPagerTab.setViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        fragment = new FoodYour();
+                        break;
+                    case 1:
+                        fragment = new FoodNearby();
+                        break;
+                }
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.frameLayout, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.commit();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 

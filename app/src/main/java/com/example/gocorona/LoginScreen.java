@@ -46,8 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class LoginScreen extends AppCompatActivity implements
-        View.OnClickListener {
+public class LoginScreen extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     String longitude;
     String addressresult;
@@ -101,18 +100,26 @@ public class LoginScreen extends AppCompatActivity implements
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         SignInButton signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setColorScheme(SignInButton.COLOR_LIGHT);
 
-
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+// Check for existing Google Sign In account, if the user is already signed in
+// the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-
+        updateUI(account);
     }
 
     @Override
@@ -267,18 +274,6 @@ public class LoginScreen extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
-            case R.id.sign_out_button:
-                signOut();
-                break;
-
-        }
-    }
 
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,

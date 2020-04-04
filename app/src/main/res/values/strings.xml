@@ -5,4 +5,5 @@
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="signed_out">Signed Out</string>
     <string name="sign_out">Sign out</string>
+    <string name="server_client_id">563221586738-45raemu6i31j4q6hq8i2nno55030m6co.apps.googleusercontent.com</string>
 </resources>

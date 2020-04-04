@@ -9,7 +9,7 @@
     <include
         android:id="@+id/login_toolbar"
         layout="@layout/app_bar_layout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
@@ -20,6 +20,7 @@
 
     <LinearLayout
         android:id="@+id/lin"
+        android:layout_below="@id/login_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -41,17 +42,12 @@
 
     </LinearLayout>
 
-    <com.ogaclejapan.smarttablayout.SmartTabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_below="@id/lin"
         android:background="@drawable/tab_layout_background"
-        app:stl_defaultTabBackground="@drawable/tab_layout_selector"
-        app:stl_defaultTabTextAllCaps="true"
-        app:stl_defaultTabTextColor="#F0F0F0"
-        app:stl_defaultTabTextHorizontalPadding="45dp"
-        app:stl_defaultTabTextSize="12sp"
         app:tabBackground="@drawable/tab_layout_selector"
         app:tabGravity="fill"
         app:tabIndicatorHeight="0dp"
@@ -59,11 +55,22 @@
         app:tabPaddingEnd="16dp"
         app:tabPaddingStart="16dp"
         app:tabRippleColor="#2196F3"
-        app:tabSelectedTextColor="#fff"
-        app:tabTextAppearance="@style/TabTextAppearance" />
+        app:tabTextColor="#ffffff"
+        app:tabSelectedTextColor="#ffffff"
+        app:tabTextAppearance="@style/TabTextAppearance" >
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:text="YOUR"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:text="NEARBY"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/frameLayout"
+        android:layout_below="@id/tabLayout"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
