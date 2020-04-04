@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".covid.MainActivity">
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:background="#ffffff"-->
+<!--        android:elevation="4dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="left|center"-->
+<!--            android:text="Symptom checker"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="35dp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--    </LinearLayout>-->
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hi! Our coronavirus disease self assessment scan has been developed on the basis of guidelines from the WHO and MHFW, Government of India. This interaction should not be taken as expert medical advice. Any information you share with us will be kept strictly confidential."
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How old are you?"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/input1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="7dp"
+                    android:hint="Enter your age..."
+                    android:textSize="20dp"
+                    android:inputType="number"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/submit1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please select your gender"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/input2check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Male" />
+
+                    <CheckBox
+                        android:id="@+id/input2check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="Female" />
+
+                    <CheckBox
+                        android:id="@+id/input2check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Others" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Please let us know your current body temperature in degree Fahrenheit (Normal body temperature is 98.6°F):"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input3check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Normal(96-98.6 F)" />
+
+                    <CheckBox
+                        android:id="@+id/input3check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="Fever(98.6-102 F)" />
+
+                    <CheckBox
+                        android:id="@+id/input3check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="High Fever(>102 F)" />
+
+                    <CheckBox
+                        android:id="@+id/input3check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Not know" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Are you experiencing any of the symptoms below (mark all those applicable)"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input4check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Dry cough" />
+
+                    <CheckBox
+                        android:id="@+id/input4check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="Loss or diminished sense of smell" />
+
+                    <CheckBox
+                        android:id="@+id/input4check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Sore Throat" />
+
+                    <CheckBox
+                        android:id="@+id/input4check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Weakness" />
+
+                    <CheckBox
+                        android:id="@+id/input4check5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Change in Appetite" />
+
+                    <CheckBox
+                        android:id="@+id/input4check6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="None of these" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvsix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Additionally, please verify if you are experiencing any of the symptoms below (mark all those applicable)"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input5check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Moderate to Severe Cough" />
+
+                    <CheckBox
+                        android:id="@+id/input5check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="Feeling Breathless" />
+
+                    <CheckBox
+                        android:id="@+id/input5check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Difficulty in Breathing" />
+
+                    <CheckBox
+                        android:id="@+id/input5check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Drowsiness" />
+
+                    <CheckBox
+                        android:id="@+id/input5check5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Persistant Pain and Pressure in Chest" />
+
+                    <CheckBox
+                        android:id="@+id/input5check6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Severe Weakness" />
+
+                    <CheckBox
+                        android:id="@+id/input5check7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="None of these" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please select your travel and exposure details"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input6check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="No travel history" />
+
+                    <CheckBox
+                        android:id="@+id/input6check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="No contact with anyone with Symptoms" />
+
+                    <CheckBox
+                        android:id="@+id/input6check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="History of travel or meeting in affected geographical area in last 14 days" />
+
+                    <CheckBox
+                        android:id="@+id/input6check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Close Contact with confirmed COVID in last 14 days" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tveight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Do you have a history of any of these conditions (mark all those applicable)"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input7check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Diabetes" />
+
+                    <CheckBox
+                        android:id="@+id/input7check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="High Blood Pressure" />
+
+                    <CheckBox
+                        android:id="@+id/input7check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Heart Disease" />
+
+                    <CheckBox
+                        android:id="@+id/input7check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Kidney Disease" />
+
+                    <CheckBox
+                        android:id="@+id/input7check5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Lung Disease" />
+
+                    <CheckBox
+                        android:id="@+id/input7check6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Stroke" />
+
+                    <CheckBox
+                        android:id="@+id/input7check7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Reduced Immunity" />
+
+                    <CheckBox
+                        android:id="@+id/input7check8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="None of these" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How have your symptoms progressed over the last 48 hrs?"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/input8check1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="apple"
+                        android:text="Improved" />
+
+                    <CheckBox
+                        android:id="@+id/input8check2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="banana"
+                        android:text="No Change" />
+
+                    <CheckBox
+                        android:id="@+id/input8check3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Worsened" />
+
+                    <CheckBox
+                        android:id="@+id/input8check4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tag="water_milon"
+                        android:text="Worsened Considerably" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/submit8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

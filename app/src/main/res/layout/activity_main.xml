@@ -22,4 +22,13 @@
         android:layout_margin="10dp"
         android:text="Food" />
 
+
+    <Button
+        android:id="@+id/symptom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_below="@id/patient"
+        android:text="Symptom" />
 </RelativeLayout>
