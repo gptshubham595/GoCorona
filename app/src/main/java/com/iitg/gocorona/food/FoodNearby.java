@@ -26,6 +26,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.iitg.gocorona.R;
 
+import java.util.HashMap;
+
 public class FoodNearby extends Fragment {
 
     public FoodNearby() {
@@ -46,33 +48,25 @@ public class FoodNearby extends Fragment {
                     foodusers.class, R.layout.layout_food_query, AllFoodViewholder.class, allfooddatabaseReference
             ) {
                 @Override
-                protected void populateViewHolder(final AllFoodViewholder viewHolder, final foodusers model, final int position) {
-                    FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                protected void populateViewHolder(final AllFoodViewholder viewHolder, final foodusers model, final int position)
+                {
+                    viewHolder.setFoodQuery(model.getFoodQuery());
+                    viewHolder.setContact(model.getContact());
+                    viewHolder.setLocation(model.getLocation());
+                    final String posid = getRef(position).getKey();
+                    viewHolder.mview.setOnClickListener(new View.OnClickListener()
+                    {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.exists()) {
-                                viewHolder.setFoodQuery(model.getFoodQuery());
-                                viewHolder.setContact(model.getContact());
-                                viewHolder.setLocation(model.getLocation());
-                                final String posid = getRef(position).getKey();
-                                viewHolder.mview.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+91" + model.getContact(), null));
-                                        startActivity(i);
-                                    }
-                                });
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        public void onClick(View v) {
+                            Intent i = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "+91" + model.getContact(), null));
+                            startActivity(i);
                         }
                     });
+                }
 
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             };
             foodreports.setAdapter(firebaseRecyclerAdapter);
@@ -136,11 +130,8 @@ public class FoodNearby extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_your, container, false);
-
         mAuth = FirebaseAuth.getInstance();
-
         swipe = view.findViewById(R.id.swipe);
-
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -149,12 +140,8 @@ public class FoodNearby extends Fragment {
             }
         });
         foodreports = view.findViewById(R.id.recycler);
-
-
         foodreports.setHasFixedSize(true);
         foodreports.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         allfooddatabaseReference = FirebaseDatabase.getInstance().getReference().child("Reports").child("food");
         allfooddatabaseReference.keepSynced(true);
         return view;

@@ -21,6 +21,7 @@
         android:inputType="number"
         android:maxEms="10"
         android:minEms="10"
+        android:maxLength="10"
         android:layout_below="@id/foodqueryDIALOG"
         android:hint="Contact Number .."
         android:layout_height="wrap_content"/>

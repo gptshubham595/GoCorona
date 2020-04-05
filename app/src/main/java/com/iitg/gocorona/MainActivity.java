@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot,query;
+    Button food, patient, symptoms, medicalChatbot,live,query;
+
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap map;
     private LocationRequest mLocationRequest;
     Location mCurrentLocation;
-    private long UPDATE_INTERVAL = 60000;  /* 60 secs */
+    private long UPDATE_INTERVAL = 300*1000;  /* 60 secs */ //5MIN
     private long FASTEST_INTERVAL = 5000; /* 5 secs */
 
     private final static String KEY_LOCATION = "location";
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         food = findViewById(R.id.food);
         symptoms = findViewById(R.id.symptom);
         patient = findViewById(R.id.patient);
+        live = findViewById(R.id.live);
+
         query = findViewById(R.id.query);
         medicalChatbot = findViewById(R.id.medicalChatbot);
 
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         medicalChatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, com.iitg.gocorona.medicalchatbot.MainActivity.class);
+                Intent i = new Intent(MainActivity.this, com.iitg.gocorona.hygiea.Splash.class);
                 startActivity(i);
             }
         });
@@ -101,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, com.iitg.gocorona.covid.MainActivity.class);
                 startActivity(i);
+            }
+        });
+
+        live.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Browser=new Intent(getApplicationContext(),Url.class);
+                Browser.putExtra("heading","COVID-19");
+                Browser.putExtra("url","https://www.covid19india.org");
+                startActivity(Browser);
             }
         });
 
