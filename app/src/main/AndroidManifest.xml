@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_GPS" />
     <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION" />
@@ -38,18 +38,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".query.reportQuery"></activity>
+        <activity android:name=".Awareness"></activity>
+        <activity android:name=".query.reportQuery" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Url" />
-
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
-
-		<activity android:name=".hygiea.Splash" />
+        <activity android:name=".hygiea.Splash" />
         <activity android:name=".hygiea.NavigationDrawer" />
-		<activity android:name=".hygiea.MainActivity" />
-        <activity android:name=".hygiea.GoogleSIgnInActivity"/>
-
+        <activity android:name=".hygiea.MainActivity" />
+        <activity android:name=".hygiea.GoogleSIgnInActivity" />
         <activity android:name=".medicalchatbot.MainActivity" />
         <activity android:name=".food.FoodActivity" />
         <activity android:name=".food.FoodYour" />

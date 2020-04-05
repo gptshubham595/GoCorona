@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot,live,query;
+    Button food, patient, symptoms, medicalChatbot,live,query,aware;
 
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     Location mCurrentLocation;
     private long UPDATE_INTERVAL = 300*1000;  /* 60 secs */ //5MIN
-    private long FASTEST_INTERVAL = 5000; /* 5 secs */
+    private long FASTEST_INTERVAL = 300*1000; /* 5 min */
 
     private final static String KEY_LOCATION = "location";
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         symptoms = findViewById(R.id.symptom);
         patient = findViewById(R.id.patient);
         live = findViewById(R.id.live);
-
+        aware = findViewById(R.id.awareness);
         query = findViewById(R.id.query);
         medicalChatbot = findViewById(R.id.medicalChatbot);
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         medicalChatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, com.iitg.gocorona.hygiea.Splash.class);
+                Intent i = new Intent(MainActivity.this, com.iitg.gocorona.medicalchatbot.MainActivity.class);
                 startActivity(i);
             }
         });

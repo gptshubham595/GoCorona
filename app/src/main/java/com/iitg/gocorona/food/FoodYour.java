@@ -102,7 +102,7 @@ public class FoodYour extends Fragment {
                 FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = current_user.getUid();
                 String device_token = FirebaseInstanceId.getInstance().getToken();
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
                 DatabaseReference newfoodquery = FirebaseDatabase.getInstance().getReference().child("Reports").child("food").child(device_token).child(pos);
                 newfoodquery.keepSynced(true);
                 newfoodquery.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -148,21 +148,21 @@ public class FoodYour extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
             }
         },500);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
             }
         },1500);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
             }
         },2500);
 
@@ -196,7 +196,7 @@ public class FoodYour extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
                 i++;
                 showDialog(getContext());
             }
@@ -205,7 +205,7 @@ public class FoodYour extends Fragment {
         add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i=geti();
+                try{i=geti();}catch (Exception e){e.printStackTrace();}
                 i++;showDialog(getContext());
             }
         });
@@ -254,7 +254,7 @@ public class FoodYour extends Fragment {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         final String uid = current_user.getUid();
         final String device_token = FirebaseInstanceId.getInstance().getToken();
-        i=geti();
+        try{i=geti();}catch (Exception e){e.printStackTrace();}
         i++;
         new Handler().postDelayed(new Runnable() {
             @Override

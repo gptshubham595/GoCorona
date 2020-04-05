@@ -5,7 +5,7 @@
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="signed_out">Signed Out</string>
     <string name="sign_out">Sign out</string>
-	    <string name="intro_message">Dont feel Well? Message the Bot for suggestions.</string>
+    <string name="intro_message">Dont feel Well? Message the Bot for suggestions.</string>
     <string name="hygiea">Medical Assistant</string>
     <string name="title_activity_navigation_drawer">NavigationDrawer</string>
 
