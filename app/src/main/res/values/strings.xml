@@ -5,5 +5,19 @@
     <string name="signed_in_fmt">Signed in as: %s</string>
     <string name="signed_out">Signed Out</string>
     <string name="sign_out">Sign out</string>
+	    <string name="intro_message">Dont feel Well? Message the Bot for suggestions.</string>
+    <string name="hygiea">Medical Assistant</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="secondary">Providing you with an interface to do so now</string>
+    <string name="ambulanceIntent">Calling an ambulance now</string>
+
     <string name="server_client_id">563221586738-45raemu6i31j4q6hq8i2nno55030m6co.apps.googleusercontent.com</string>
 </resources>

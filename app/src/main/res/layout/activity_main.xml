@@ -50,4 +50,13 @@
         android:layout_margin="10dp"
         android:layout_below="@id/symptom"
         android:text="Medical ChatBot" />
+
+    <Button
+        android:id="@+id/live"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_below="@id/medicalChatbot"
+        android:text="Live" />
 </RelativeLayout>

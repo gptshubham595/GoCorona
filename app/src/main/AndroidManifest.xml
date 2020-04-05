@@ -10,7 +10,10 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -24,6 +27,7 @@
     <permission android:name="android.permission.ACCESS_FINE_LOCATION" android:protectionLevel="dangerous"/>
     <permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:protectionLevel="dangerous"/>
     <application
+		android:name=".hygiea.NavigationDrawer"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,10 +36,14 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".Url" />
 
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
-
+		
+		<activity android:name=".hygiea.Splash" />
+		<activity android:name=".hygiea.MainActivity" />
+        <activity android:name=".hygiea.GoogleSIgnInActivity"/>
 
         <activity android:name=".medicalchatbot.MainActivity" />
 
