@@ -78,6 +78,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
 
+    annotationProcessor 'org.apache.logging.log4j:log4j-core:2.2'
     implementation "com.github.JeovaniMartinez:AndroidViewPagerIndicator:0.1.0"
 
     implementation 'com.ogaclejapan.smarttablayout:library:2.0.0@aar'
