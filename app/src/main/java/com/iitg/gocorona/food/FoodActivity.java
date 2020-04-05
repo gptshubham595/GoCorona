@@ -64,7 +64,7 @@ public class FoodActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.commit();
-        (Objects.requireNonNull(tabLayout.getTabAt(1)).view).setVisibility(View.GONE);
+//        (Objects.requireNonNull(tabLayout.getTabAt(1)).view).setVisibility(View.GONE);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
