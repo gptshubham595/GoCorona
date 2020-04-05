@@ -46,6 +46,7 @@
         <activity android:name=".covid.Main2Activity" />
 
 		<activity android:name=".hygiea.Splash" />
+        <activity android:name=".hygiea.NavigationDrawer" />
 		<activity android:name=".hygiea.MainActivity" />
         <activity android:name=".hygiea.GoogleSIgnInActivity"/>
 

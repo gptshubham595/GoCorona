@@ -72,6 +72,9 @@ public class FoodActivity extends AppCompatActivity {
                     case 0:
                         fragment = new FoodYour();
                         break;
+                    case 1:
+                        fragment = new FoodNearby();
+                        break;
 
                 }
                 FragmentManager fm = getSupportFragmentManager();
