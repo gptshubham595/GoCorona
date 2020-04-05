@@ -48,7 +48,7 @@ public class FoodActivity extends AppCompatActivity {
             }
         });
         youritem = findViewById(R.id.yourItem);
-        nearitem = findViewById(R.id.nearItem);
+
 //        ViewGroup.LayoutParams params = tabLayout.getLayoutParams();
 //        params.width = (ViewGroup.LayoutParams.MATCH_PARENT) / 3;
 //        youritem.setLayoutParams(params);
@@ -69,9 +69,7 @@ public class FoodActivity extends AppCompatActivity {
                     case 0:
                         fragment = new FoodYour();
                         break;
-                    case 1:
-                        fragment = new FoodNearby();
-                        break;
+                    
                 }
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
