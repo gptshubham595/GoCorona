@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AwarenessFragment2">
-    
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:background="#31D6CE87"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:text="There is no specific medicine to prevent or treat coronavirus disease (COVID-19). \n\nPeople may need supportive care to help them breathe.
+Self-care
+\n\nIf you have mild symptoms, stay at home until you’ve recovered. You can relieve your symptoms if you:
+\nrest and sleep
+\nkeep warm
+\ndrink plenty of liquids
+\nuse a room humidifier or take a hot shower to help ease a sore throat and cough
+\n\n
+If you develop a fever, cough, and have difficulty breathing, promptly seek medical care. Call in advance and tell your health provider of any recent travel or recent contact with travelers.
+"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</ScrollView>

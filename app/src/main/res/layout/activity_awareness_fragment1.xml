@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AwarenessFragment1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#201335"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:text="
+People may be sick with the virus for 1 to 14 days before developing symptoms. \n\nThe most common symptoms of coronavirus disease (COVID-19) are fever, tiredness, and dry cough. Most people (about 80%) recover from the disease without needing special treatment.\n
+More rarely, the disease can be serious and even fatal. Older people, and people with other medical conditions (such as asthma, diabetes, or heart disease), may be more vulnerable to becoming severely ill.\n\n
+People may experience:\n
+\ncough
+\nfever
+\ntiredness
+\ndifficulty breathing (severe cases)
+"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</ScrollView>

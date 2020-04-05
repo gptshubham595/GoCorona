@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AwarenessFragment3">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:background="#31D6CE87"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:fontFamily="serif"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="STAY HOME.SAVE LIVES.
+\n\nHelp stop coronavirus
+\n1)STAYhome
+\n2)KEEPa safe distance
+\n3)WASHhands often
+\n4)COVERyour cough
+\n5)SICK?Call the helpline
+\n\n
+There’s currently no vaccine to prevent coronavirus disease (COVID-19).
+\n\n
+You can protect yourself and help prevent spreading the virus to others if you:
+\n\n\n
+DO
+Wash your hands regularly for 20 seconds, with soap and water or alcohol-based hand rub
+\n
+Cover your nose and mouth with a disposable tissue or flexed elbow when you cough or sneeze
+\nAvoid close contact (1 meter or 3 feet) with people who are unwell
+\nStay home and self-isolate from others in the household if you feel unwell
+\n\n\nDon't
+\nTouch your eyes, nose, or mouth if your hands are not clean
+
+"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</ScrollView>

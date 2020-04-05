@@ -3,19 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/gradient"
     tools:context=".auth.ForgotPass">
 
     <TextView
         android:id="@+id/typeemail"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:paddingLeft="10dp"
-        android:text="Type your Email Below:"
-        android:textColor="@color/colorAccent"
-        android:textSize="28sp"
-
+        android:gravity="center"
+        android:text="Forgot your password?\n Enter your registered e-mail address and we’ll send you a reset link"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginBottom="50dp"
         />
 
     <EditText
@@ -23,20 +24,28 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/typeemail"
-        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"
+        android:textColorHint="@color/white"
         android:hint="Email"
         android:paddingLeft="10dp"
-        android:textSize="28sp" />
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:drawableLeft="@android:drawable/ic_dialog_email"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/forgotbtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
         android:layout_below="@id/email"
         android:layout_marginTop="250dp"
-        android:background="@color/colorAccent"
-        android:text="Click Here"
+        android:background="@drawable/shape"
+        android:backgroundTint="#263238"
+        android:text="REQUEST RESET LINK"
         android:textColor="#ffffff"
-        android:textSize="28sp" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

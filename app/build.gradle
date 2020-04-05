@@ -100,4 +100,6 @@ dependencies {
 
     implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     androidTestImplementation 'junit:junit:4.12'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 }

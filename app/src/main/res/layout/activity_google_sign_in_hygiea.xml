@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splashcloud"
-    tools:context="com.example.manan.hygiea.GoogleSIgnInActivity">
+    android:background="@drawable/gradient"
+    tools:context=".hygiea.GoogleSIgnInActivity">
 
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:text="Sign in via"
+        android:textColor="@android:color/white"
+        android:text="Share Details via"
         android:layout_marginBottom="35dp"
-
         android:layout_above="@+id/sign_in_button"
         android:layout_centerHorizontal="true" />
 
