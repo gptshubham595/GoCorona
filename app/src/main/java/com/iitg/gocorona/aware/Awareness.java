@@ -1,4 +1,4 @@
-package com.iitg.gocorona;
+package com.iitg.gocorona.aware;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.VideoView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.iitg.gocorona.R;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 

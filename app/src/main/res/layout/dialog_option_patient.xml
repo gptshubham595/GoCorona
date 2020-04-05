@@ -1,57 +1,78 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="10dp"
     android:layout_gravity="center"
     android:layout_marginRight="10dp">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <EditText
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:id="@+id/foodqueryDIALOG"
-        android:layout_marginTop="5dp"
-        android:inputType="textMultiLine"
-        android:hint="Person name ABC is suffering from corona or has travelled outside within 14days time interval span"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:id="@+id/contactnumberDIALOG"
-        android:layout_marginTop="5dp"
-        android:inputType="number"
-        android:maxEms="10"
-        android:maxLength="10"
-        android:minEms="10"
-        android:layout_below="@id/foodqueryDIALOG"
-        android:hint="Contact Number .."
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:hint="Location"
-        android:layout_marginTop="5dp"
-        android:inputType="textPostalAddress"
-        android:layout_below="@id/contactnumberDIALOG"
-        android:id="@+id/locationqueryDIALOG"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_below="@id/locationqueryDIALOG"
-        android:id="@+id/cancelDIALOG"
-        android:text="CANCEL"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/holo_red_dark"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_below="@id/locationqueryDIALOG"
-        android:id="@+id/okDIALOG"
-        android:text="OK"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@android:color/holo_green_dark"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>
+        app:cardCornerRadius="8dp"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/foodqueryDIALOG"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/shape"
+                android:textColor="#757575"
+                android:inputType="textMultiLine"
+                android:gravity="center"
+                android:hint="Person name ABC is suffering from corona or has travelled outside within 14days time interval span"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/contactnumberDIALOG"
+                android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:maxEms="10"
+                android:background="@drawable/shape"
+                android:textColorHint="#757575"
+                android:minEms="10"
+                android:textColor="#757575"
+                android:gravity="center"
+                android:maxLength="10"
+                android:layout_below="@id/foodqueryDIALOG"
+                android:hint="Contact Number .."
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:hint="Location"
+                android:layout_marginTop="5dp"
+                android:inputType="textPostalAddress"
+                android:textColor="#757575"
+                android:textColorHint="#757575"
+                android:gravity="center"
+                android:background="@drawable/shape"
+                android:layout_below="@id/contactnumberDIALOG"
+                android:id="@+id/locationqueryDIALOG"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/locationqueryDIALOG"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="70dp"
+                    android:id="@+id/cancelDIALOG"
+                    android:gravity="left"
+                    android:layout_marginLeft="82dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:drawable/ic_delete"
+                    android:layout_height="70dp"/>
+                <Button
+                    android:layout_width="70dp"
+                    android:id="@+id/okDIALOG"
+                    android:background="@drawable/ic_done_black_24dp"
+                    android:gravity="right"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="62dp"
+                    android:backgroundTint="@android:color/holo_green_dark"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="70dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </ScrollView>

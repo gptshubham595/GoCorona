@@ -1,4 +1,4 @@
-package com.iitg.gocorona;
+package com.iitg.gocorona.aware;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.iitg.gocorona.R;
 
 public class AwarenessFragment1 extends Fragment {
 

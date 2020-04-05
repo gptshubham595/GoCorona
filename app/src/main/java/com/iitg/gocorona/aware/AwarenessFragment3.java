@@ -1,4 +1,4 @@
-package com.iitg.gocorona;
+package com.iitg.gocorona.aware;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.iitg.gocorona.R;
 
 public class AwarenessFragment3 extends Fragment {
     public AwarenessFragment3() {

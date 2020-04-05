@@ -16,6 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -38,12 +43,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.iitg.gocorona.auth.LoginScreen;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
 import com.iitg.gocorona.query.reportQuery;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
@@ -54,8 +64,9 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    private static final String ROOT_URL = "https://thevirustracker.com/free-api?global=stats";
 
-    Button food, patient, symptoms, medicalChatbot,live,query,aware;
+    Button food, patient, symptoms, medicalChatbot, live, query, aware;
 
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
@@ -64,17 +75,21 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap map;
     private LocationRequest mLocationRequest;
     Location mCurrentLocation;
-    private long UPDATE_INTERVAL = 300*1000;  /* 60 secs */ //5MIN
-    private long FASTEST_INTERVAL = 300*1000; /* 5 min */
+    private long UPDATE_INTERVAL = 300 * 1000;  /* 60 secs */ //5MIN
+    private long FASTEST_INTERVAL = 300 * 1000; /* 5 min */
 
     private final static String KEY_LOCATION = "location";
 
+    Button live_cases_btn, live_deaths_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+
+        live_cases_btn = findViewById(R.id.live_cases);
+        live_deaths_btn = findViewById(R.id.live_deaths);
 
         food = findViewById(R.id.food);
         symptoms = findViewById(R.id.symptom);
@@ -111,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
         live.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Browser=new Intent(getApplicationContext(),Url.class);
-                Browser.putExtra("heading","COVID-19");
-                Browser.putExtra("url","https://www.covid19india.org");
+                Intent Browser = new Intent(getApplicationContext(), Url.class);
+                Browser.putExtra("heading", "COVID-19");
+                Browser.putExtra("url", "https://www.covid19india.org");
                 startActivity(Browser);
             }
         });
@@ -307,9 +322,13 @@ public class MainActivity extends AppCompatActivity {
         String device_token = FirebaseInstanceId.getInstance().getToken();
         Date date = new Date();
         long timemill = date.getTime();
-        try{DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("travel").child(String.valueOf(timemill));
-        mDatabase.setValue(Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude()));}catch(Exception e){e.printStackTrace();}
+        try {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("travel").child(String.valueOf(timemill));
+            mDatabase.setValue(Double.toString(location.getLatitude()) + "," +
+                    Double.toString(location.getLongitude()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -341,4 +360,72 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void livedataCorona() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                ROOT_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            Log.d("JSON", jsonObject + "");
+
+
+                            if (!jsonObject.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), "" + jsonObject.getString("results"), Toast.LENGTH_LONG).show();
+                                Map address = ((Map) jsonObject.get("results"));
+                                String total_cases, total_deaths;
+                                int k = 0;
+                                // iterating address Map
+                                Iterator<Map.Entry> itr1 = address.entrySet().iterator();
+
+                                while (itr1.hasNext()) {
+                                    Map.Entry pair = itr1.next();
+                                    System.out.println(pair.getKey() + " : " + pair.getValue());
+
+                                    if (k == 0) {
+                                        Toast.makeText(MainActivity.this, pair.getKey()+"", Toast.LENGTH_SHORT).show();
+                                        total_cases = (String) pair.getValue();
+                                        live_cases_btn.setText("Total Live Cases\n"+total_cases);
+                                    }
+                                    if (k == 3) {
+                                        Toast.makeText(MainActivity.this, pair.getKey()+"", Toast.LENGTH_SHORT).show();
+                                        total_deaths = (String) pair.getValue();
+                                        live_deaths_btn.setText("Total Death Cases\n"+total_deaths);
+                                    }
+
+
+                                    k++;
+                                }
+
+                            } else {
+                                Toast.makeText(MainActivity.this, "Some Error Occured", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                return params;
+            }
+        };
+
+        stringRequest.setShouldCache(false);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+    }
 }

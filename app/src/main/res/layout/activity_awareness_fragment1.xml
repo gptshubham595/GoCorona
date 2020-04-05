@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AwarenessFragment1">
+    tools:context=".aware.AwarenessFragment1">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardCornerRadius="8dp"
