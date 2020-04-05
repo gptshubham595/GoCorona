@@ -41,7 +41,7 @@ public class Main2Activity extends AppCompatActivity {
         }
         else if(res<0.75)
         {
-            show.setText("You should see a doctor and get a test. You have a high chance of being infected.");
+            show.setText("You should visit a doctor and get a test. You have a high chance of being infected.");
             layout.setBackgroundColor(Color.parseColor("#F65D06"));
         }
         else

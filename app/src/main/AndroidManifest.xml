@@ -19,13 +19,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="com.iitg.gocorona.permission.MAP_RECEIVE" />
+
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true"
-        />
+        android:required="true" />
 
-    <permission android:name="android.permission.ACCESS_FINE_LOCATION" android:protectionLevel="dangerous"/>
-    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:protectionLevel="dangerous"/>
+    <permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:protectionLevel="dangerous" />
+    <permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:protectionLevel="dangerous" />
+
     <application
 		android:name=".hygiea.NavigationDrawer"
         android:allowBackup="true"
@@ -34,31 +39,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".query.reportQuery"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Url" />
 
         <activity android:name=".covid.MainActivity" />
         <activity android:name=".covid.Main2Activity" />
-		
+
 		<activity android:name=".hygiea.Splash" />
 		<activity android:name=".hygiea.MainActivity" />
         <activity android:name=".hygiea.GoogleSIgnInActivity"/>
 
         <activity android:name=".medicalchatbot.MainActivity" />
-
-
         <activity android:name=".food.FoodActivity" />
         <activity android:name=".food.FoodYour" />
         <activity android:name=".food.FoodNearby" />
-
         <activity android:name=".patient.PatientActivity" />
-
         <activity android:name=".auth.ForgotPass" />
         <activity android:name=".auth.LoginAlready" />
         <activity android:name=".auth.RegisterDetails" />
-
-
         <activity android:name=".auth.LoginScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

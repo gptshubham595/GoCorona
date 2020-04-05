@@ -41,6 +41,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.auth.LoginScreen;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
+import com.iitg.gocorona.query.reportQuery;
 
 import java.util.Date;
 
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot,live;
+    Button food, patient, symptoms, medicalChatbot,live,query;
+
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
 
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         patient = findViewById(R.id.patient);
         live = findViewById(R.id.live);
 
+        query = findViewById(R.id.query);
         medicalChatbot = findViewById(R.id.medicalChatbot);
 
         food.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +126,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        query.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, reportQuery.class));
+
+            }
+        });
 
         if (TextUtils.isEmpty(getResources().getString(R.string.google_maps_key))) {
             throw new IllegalStateException("You forgot to supply a Google Maps API key");
