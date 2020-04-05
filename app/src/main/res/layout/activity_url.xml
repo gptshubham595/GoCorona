@@ -11,7 +11,7 @@
         android:text=""
         android:textSize="15sp"
         android:gravity="center"
-        android:background="@drawable/black5"
+        android:background="@android:color/black"
         android:textColor="#ffffff"
         android:id="@+id/text"
         android:typeface="serif"
@@ -19,7 +19,7 @@
     <Button
         android:layout_height="18dp"
         android:layout_width="20dp"
-        android:background="@drawable/black5"
+        android:background="@android:color/black"
         android:text="x"
         android:textColor="#ffffff"
         android:id="@+id/btn"

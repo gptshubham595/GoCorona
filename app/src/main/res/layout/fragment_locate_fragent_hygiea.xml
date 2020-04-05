@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context="com.example.manan.hygiea.LocateFragent">
+    tools:context=".hygiea.LocateFragent">
 
     <!-- TODO: Update blank fragment layout -->
 
