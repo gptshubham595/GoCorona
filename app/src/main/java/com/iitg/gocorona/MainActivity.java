@@ -41,6 +41,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.iitg.gocorona.auth.LoginScreen;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
+import com.iitg.gocorona.query.reportQuery;
 
 import java.util.Date;
 
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, reportQuery.class));
 
             }
         });
