@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.iitg.gocorona.R;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
@@ -28,6 +29,11 @@ public class Awareness extends AppCompatActivity {
                 .add("PREVENTION", AwarenessFragment3.class)
                 .add("TREATMENT", AwarenessFragment2.class)
                 .create());
+
+        viewPager=findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+        SmartTabLayout tabLayout=findViewById(R.id.tabLayout);
+        tabLayout.setViewPager(viewPager);
 
         try{VideoView videoView = (VideoView) findViewById(R.id.video);
         MediaController mediaController = new MediaController(this);

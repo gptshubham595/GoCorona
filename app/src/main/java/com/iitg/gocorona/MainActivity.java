@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
@@ -43,6 +44,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.iitg.gocorona.aware.Awareness;
 import com.iitg.gocorona.food.FoodActivity;
 import com.iitg.gocorona.patient.PatientActivity;
 import com.iitg.gocorona.query.reportQuery;
@@ -52,7 +54,6 @@ import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import permissions.dispatcher.NeedsPermission;
@@ -65,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final String ROOT_URL = "https://thevirustracker.com/free-api?global=stats";
-
-    Button food, patient, symptoms, medicalChatbot, live, query, aware;
+    String total_cases, total_deaths;
+    Button food, patient, symptoms, medicalChatbot, live, query, aware, edu;
 
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
@@ -97,7 +98,46 @@ public class MainActivity extends AppCompatActivity {
         live = findViewById(R.id.live);
         aware = findViewById(R.id.awareness);
         query = findViewById(R.id.query);
+        livedataCorona();
+        live_cases_btn.setText("Total Live Cases\n" + total_cases);
+        live_deaths_btn.setText("Total Live Cases\n" + total_deaths);
+
+        live_cases_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                livedataCorona();
+                live_cases_btn.setText("Total Live Cases\n" + total_cases);
+                live_deaths_btn.setText("Total Live Cases\n" + total_deaths);
+            }
+        });
+        live_deaths_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                livedataCorona();
+                live_cases_btn.setText("Total Live Cases\n" + total_cases);
+                live_deaths_btn.setText("Total Live Cases\n" + total_deaths);
+            }
+        });
+
+
         medicalChatbot = findViewById(R.id.medicalChatbot);
+
+        try {
+            livedataCorona();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    livedataCorona();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 500);
 
         food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +177,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, PatientActivity.class);
+                startActivity(i);
+            }
+        });
+
+        aware.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, Awareness.class);
                 startActivity(i);
             }
         });
@@ -372,34 +420,22 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
 
                             Log.d("JSON", jsonObject + "");
+                            Log.d("JSON", jsonObject.getString("results") + "");
+                            Log.d("JSON", jsonObject.getString("results").split(",")[0].substring(16));
+                            Log.d("JSON", jsonObject.getString("results").split(",")[3].substring(15));
 
 
                             if (!jsonObject.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), "" + jsonObject.getString("results"), Toast.LENGTH_LONG).show();
                                 Map address = ((Map) jsonObject.get("results"));
-                                String total_cases, total_deaths;
-                                int k = 0;
+
+
                                 // iterating address Map
-                                Iterator<Map.Entry> itr1 = address.entrySet().iterator();
+                                total_cases = jsonObject.getString("results").split(",")[0].substring(16);
+                                total_deaths = jsonObject.getString("results").split(",")[3].substring(15);
 
-                                while (itr1.hasNext()) {
-                                    Map.Entry pair = itr1.next();
-                                    System.out.println(pair.getKey() + " : " + pair.getValue());
-
-                                    if (k == 0) {
-                                        Toast.makeText(MainActivity.this, pair.getKey()+"", Toast.LENGTH_SHORT).show();
-                                        total_cases = (String) pair.getValue();
-                                        live_cases_btn.setText("Total Live Cases\n"+total_cases);
-                                    }
-                                    if (k == 3) {
-                                        Toast.makeText(MainActivity.this, pair.getKey()+"", Toast.LENGTH_SHORT).show();
-                                        total_deaths = (String) pair.getValue();
-                                        live_deaths_btn.setText("Total Death Cases\n"+total_deaths);
-                                    }
-
-
-                                    k++;
-                                }
+                                live_cases_btn.setText("Total Live Cases\n" + jsonObject.getString("results").split(",")[0].substring(16));
+                                live_deaths_btn.setText("Total Live Cases\n" + jsonObject.getString("results").split(",")[3].substring(15));
 
                             } else {
                                 Toast.makeText(MainActivity.this, "Some Error Occured", Toast.LENGTH_SHORT).show();
