@@ -5,17 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AwarenessFragment1">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="8dp"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_margin="8dp"
         android:layout_height="match_parent">
-
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fluandcold_web" />
         <TextView
             android:layout_width="match_parent"
             android:textSize="18sp"
             android:gravity="center"
+            android:layout_below="@id/gif"
             android:textColor="#201335"
             android:fontFamily="serif"
+            android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:text="
 People may be sick with the virus for 1 to 14 days before developing symptoms. \n\nThe most common symptoms of coronavirus disease (COVID-19) are fever, tiredness, and dry cough. Most people (about 80%) recover from the disease without needing special treatment.\n
@@ -29,4 +40,5 @@ People may experience:\n
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

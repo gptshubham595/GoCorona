@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AwarenessFragment3">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:background="#31D6CE87"
-        android:layout_height="match_parent">
 
-        <TextView
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:textSize="18sp"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:text="STAY HOME.SAVE LIVES.
-\n\nHelp stop coronavirus
-\n1)STAYhome
-\n2)KEEPa safe distance
-\n3)WASHhands often
-\n4)COVERyour cough
-\n5)SICK?Call the helpline
-\n\n
-There’s currently no vaccine to prevent coronavirus disease (COVID-19).
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="#ffffff">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gif"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/dofive" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gif"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="There’s currently no vaccine to prevent coronavirus disease (COVID-19).
 \n\n
 You can protect yourself and help prevent spreading the virus to others if you:
 \n\n\n
@@ -39,7 +44,10 @@ Cover your nose and mouth with a disposable tissue or flexed elbow when you coug
 \nTouch your eyes, nose, or mouth if your hands are not clean
 
 "
-            android:layout_height="wrap_content"/>
+                android:textColor="#160D27"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

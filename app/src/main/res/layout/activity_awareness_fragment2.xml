@@ -5,19 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AwarenessFragment2">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:background="#31D6CE87"
-        android:layout_height="match_parent">
 
-        <TextView
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:text="There is no specific medicine to prevent or treat coronavirus disease (COVID-19). \n\nPeople may need supportive care to help them breathe.
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="#31D6CE87">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gif"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/tenor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gif"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="There is no specific medicine to prevent or treat coronavirus disease (COVID-19). \n\nPeople may need supportive care to help them breathe.
 Self-care
 \n\nIf you have mild symptoms, stay at home until you’ve recovered. You can relieve your symptoms if you:
 \nrest and sleep
@@ -27,7 +40,10 @@ Self-care
 \n\n
 If you develop a fever, cough, and have difficulty breathing, promptly seek medical care. Call in advance and tell your health provider of any recent travel or recent contact with travelers.
 "
-            android:layout_height="wrap_content"/>
+                android:textColor="#160D27"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

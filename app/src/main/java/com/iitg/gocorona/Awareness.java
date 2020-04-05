@@ -24,8 +24,8 @@ public class Awareness extends AppCompatActivity {
         adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("SYMPTOMS", AwarenessFragment1.class)
-                .add("PREVENTION", AwarenessFragment2.class)
-                .add("TREATMENT", AwarenessFragment3.class)
+                .add("PREVENTION", AwarenessFragment3.class)
+                .add("TREATMENT", AwarenessFragment2.class)
                 .create());
 
         try{VideoView videoView = (VideoView) findViewById(R.id.video);
