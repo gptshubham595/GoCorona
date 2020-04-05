@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    Button food, patient, symptoms, medicalChatbot;
+    Button food, patient, symptoms, medicalChatbot,query;
     private FirebaseAuth mAuth;
     private DatabaseReference storeuserdata;
 
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         food = findViewById(R.id.food);
         symptoms = findViewById(R.id.symptom);
         patient = findViewById(R.id.patient);
+        query = findViewById(R.id.query);
         medicalChatbot = findViewById(R.id.medicalChatbot);
 
         food.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        query.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         if (TextUtils.isEmpty(getResources().getString(R.string.google_maps_key))) {
             throw new IllegalStateException("You forgot to supply a Google Maps API key");
