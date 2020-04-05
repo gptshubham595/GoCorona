@@ -38,7 +38,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Awareness"></activity>
+        <activity android:name=".AwarenessFragment3"></activity>
+        <activity android:name=".AwarenessFragment2" />
+        <activity android:name=".AwarenessFragment1" />
+        <activity android:name=".Awareness" />
         <activity android:name=".query.reportQuery" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Url" />
