@@ -304,12 +304,12 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
 
-
+        String device_token = FirebaseInstanceId.getInstance().getToken();
         Date date = new Date();
         long timemill = date.getTime();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("travel").child(String.valueOf(timemill));
+        try{DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("travel").child(String.valueOf(timemill));
         mDatabase.setValue(Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude()));
+                Double.toString(location.getLongitude()));}catch(Exception e){e.printStackTrace();}
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
